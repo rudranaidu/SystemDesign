@@ -2,44 +2,36 @@
     Describe user's view of the sytem in plain English
 	Ask clarifying questions
  2) Technical Requirements: 
-                 How many users does the system handles
-				 How often they contact the system for reads/writes
-				 How big the objects transferred into System and out of System 
-				 what is the average size of an object
-				 where are the users located?
-				 Is system supports consistency or availability?
+       How many users does the system handles
+       How often they contact the system for reads/writes
+       How big the objects transferred into System and out of System 
+       what is the average size of an object
+       where are the users located?
+       Is system supports consistency or availability?
 				 
   3) Deising microservices of the system
       Cluster the requirement such that each cluster handles by different microservice
 	  If API and datamodel of two functional requirements do not look same, put them in different buckets
 	  Take the user story from functional requirement and group them around business objects they manipulate
 	  Business objects becomes services, functionality becomes endpoints
-
-
   4) Design logical architecture
-  
-      one block for each microservice
+        One block for each microservice
 	  Draw and explain logical flow
 	  If the client is awaiting for response from microservice use REST/HTTP API
 	  If the client microservice doesnot expect immediate response from server use Message Queue
 	  if data transfer is online use BatchJobs
-  
-  
   5) Deep dive into microservice
-        Each microservice can have 3 tiers
-	    Backend tier with business logic
-		Cache tier for faster response time, data in cache is subset of database tier
-		Storage tier for datastorage and retrieval (store in row-major or column-major or files)
+         Each microservice can have 3 tiers
+         Backend tier with business logic
+         Cache tier for faster response time, data in cache is subset of database tier
+         Storage tier for datastorage and retrieval (store in row-major or column-major or files)
 		
   6) Identify the Need for scale
-  
-     In each micro service , Identify the need for scale
+       In each micro service , Identify the need for scale
 	  Need to scale for storage
 	  Need to scale for throughput
 	  Need to scale for API parallelization
 	  Need to remove hotspots
-	  Availability and geo-distribution
-	  
 	  Draw a generic distributed architecture per tier
 	  if app server tier is stateless , round robin the requests
 	  if Storage tier
@@ -47,5 +39,5 @@
 		Propose algorithm to place shards in servers
 		Explain how API works in this shard partition
 		Propose replication
-		Propise Consistency or Availability
+		Propose Consistency or Availability
 		Use cache according to problem
