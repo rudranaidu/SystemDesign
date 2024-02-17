@@ -1,6 +1,6 @@
 # SystemDesign
 Study material for SystemDesign interviews
-Sytem Design template
+We can use following template to solve System design usecases.
 
 Gather Functional Requirements:
   Obtain a detailed problem statement.
