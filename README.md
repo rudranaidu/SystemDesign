@@ -27,7 +27,17 @@ Design Logical Architecture:
   
 Deep Dive into Microservices:
   Each microservice consists of three tiers: Backend tier (business logic), Cache tier (for faster response), and Storage tier (data storage and retrieval).
-  
+  DatModel : Schema, selection of cache, selection of storage, estimation 
+   How to store in Cache tier
+   How to store in Storage tier
+   APIs
+   Algorithms in APIS
+   Flow of API
+   Design considerations: CAP theorem,Sharding, API parallelization , LoadBalancers, Datapurge
+   Need to scale for Storage?
+   Need to scale for throughput?
+   Need to scale for Parellelization?  
+
 Identify the Need for Scale:
   Assess scalability requirements for each microservice, considering storage, throughput, API parallelization, hotspots, availability, and geo-distribution.
   Draw a distributed architecture per tier, with strategies like round-robin for stateless app server tiers and shard partitioning for storage tiers.
