@@ -56,8 +56,19 @@ Solution) First calculate per 1 day
           Total amount of data  = 2000 * 20 TB
                                 = 40 * 1000 TB
                                  = 40 PB
-
     
-  
+Exercise 2: If 500 million users upload 10 photos per day, Howmuch storage do we need to save metadata for 6 years?
+            Photos -> photoID(8 bytes) ,Userid(4 bytes) , timestamp (4 bytes)
+            per single user we need 16 bytes (consider 20 for approximation)
+
+           = 500*10*10^6* 20* 2000
+           = 5*100*10*10^6*4*10^4
+           = 2*10*10^13
+           = 2* 10^14
+           = 2*100*10^12
+           = 200 TB
+ 
+Exercise 3: 
+           
   
   
