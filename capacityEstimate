@@ -2,7 +2,7 @@ Optimal API latency is 200 milli seconds.
 Time taken to read 1 MB sequentially 
      RAM -> 0.25 milliseconds
      SSD(Solid state drive) -> 1 ms (4x memory)
-     Disk -> 20 ms (80X memory)
+     Disk -> 20 ms (80X memory).l
      1GBPS network -> 10 milliseconds (40 X memory)
      Distributed Cache like Redis (0.25 milliseconds)
 
@@ -58,7 +58,7 @@ Solution) First calculate per 1 day
                                  = 40 PB
     
 Exercise 2: If 500 million users upload 10 photos per day, Howmuch storage do we need to save metadata for 6 years?
-            Photos -> photoID(8 bytes) ,Userid(4 bytes) , timestamp (4 bytes)
+Solution:   Photos -> photoID(8 bytes) ,Userid(4 bytes) , timestamp (4 bytes)
             per single user we need 16 bytes (consider 20 for approximation)
 
            = 500*10*10^6* 20* 2000
@@ -68,7 +68,20 @@ Exercise 2: If 500 million users upload 10 photos per day, Howmuch storage do we
            = 2*100*10^12
            = 200 TB
  
-Exercise 3: 
-           
-  
-  
+Exercise 3: If our API takes 100 milliseconds to calculate the response and we are getting 100K requests per seconds, Howmany servers are required?
+Solution:   1 thread takes 100 milliseconds to serve 1 request
+            No of threads in commoditiy server = 250 threads
+            1 thread , in 1 second serves 10 requests
+            250 threads, in 1 second serves 2500 requests
+            1 server serves 2500 requests per second
+            if we want to serve 100K requests then how many servers required?
+              100k/2500 = 100000/2500 = 1000/25 = 40 servers
+           if we allows 100 CPU in every servers we need 40 servers
+           But servers function only 50 percent of their capacity. So  we need 80 servers to serve 100K requests .
+
+Exercise 4: howmany number of servers for storing meatadata calculated in exercise 2, and Replication Factor 3.
+            
+Solution:   For single DB servers it stores 100TB
+            For 200 TB we need 2 servers
+            DB servers perfrom 90% of their capacity . So we need 3 servers
+            If RF is 3 , we need to 9 servers.
