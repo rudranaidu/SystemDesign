@@ -21,13 +21,23 @@ Rounded numbers for Quick calculations
                       = 4 GB per seconds datatransfer
                       = 300 MB perseconds datatransfer
 
-
 Power of 2 and power of 10
 2^10  = 10^3 = 1 KB =  1 thousand
 2^20 =  10^6 = 1 MB =  1 million
 2^30 =  10^9 = 1 GB =  1 billion
 2^40 = 10^12 = 1 TB =  1 trillion
 2^50 = 10^15 = 1000 TB = 1000 trillions(1 PB)
+
+Howmany bytes should we use for userID variable if accomodate 100 million users in 1 year?
+     100 millions = 100* 10^6 = 10^8  it is equivalent to 2^30.
+     we need 32 bits are enough to accomodate 100 million users
+
+Howmany bits should we use for tweet_id?
+    50 bits gives the ability to count upto 1000 trillions
+    so twitter uses 64 bits to accomodate tweet_id
+
+
+
 
   
   
