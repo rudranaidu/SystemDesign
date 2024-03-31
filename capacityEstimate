@@ -34,11 +34,30 @@ Howmany bytes should we use for userID variable if accomodate 100 million users 
 
 Howmany bits should we use for tweet_id?
     50 bits gives the ability to count upto 1000 trillions
+
     so twitter uses 64 bits to accomodate tweet_id
 
 
+Exercise1:  Consider below numbers. How much data is required to store photo for 6 years?
+            500 million daily active users 
+            100 million photos uploaded per day
+            Average photo size = 200 KB
 
+Solution) First calculate per 1 day
+           = 200 KB * 100 millions
+           = 2*10^2 * 10^3 * 100 * 10^6
+           = 2* 10^2 * 10^3 * 10^2 * 10^6
+           = 2 * 10^13
+           = 2* 10 * 10^12
+           = 20 TB
+          For 3 years = 1000 days (approximately)
+          For 6 years = 2000 days
+          
+          Total amount of data  = 2000 * 20 TB
+                                = 40 * 1000 TB
+                                 = 40 PB
 
+    
   
   
   
