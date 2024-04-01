@@ -122,4 +122,18 @@ Exercise 6: If a video streaming platform has 50 million users streaming videos 
 Exercise 7: A file-sharing service has 100 million users uploading files at an average rate of 1 GB per user per week.
             How much storage space is needed to accommodate file uploads for 6 months?
 
+Solution)    Per 1 month = 4 weeks
+                        = 4* 1GB * 100 million users
+                        = 4* 10^9 * 100 * 10^6
+                        = 4 * 10^17
+                         = 4* 100 * 10^15
+                         = 400 PB
+            Per 6 months = 6* 400 PB
+                          = 2400 PB
+                           ~2.4 Exabytes (EB)
+      
 
+Exercise 8: An e-commerce platform experiences 1 billion product searches per day, with each search query generating 1 KB of 
+            search metadata. How much storage space is required to store search metadata for a month?
+
+             
