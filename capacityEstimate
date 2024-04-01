@@ -128,7 +128,7 @@ Solution)    Per 1 month = 4 weeks
                         = 4 * 10^17
                          = 4* 100 * 10^15
                          = 400 PB
-            Per 6 months = 6* 400 PB
+             Per 6 months = 6* 400 PB
                           = 2400 PB
                            ~2.4 Exabytes (EB)
       
@@ -136,4 +136,15 @@ Solution)    Per 1 month = 4 weeks
 Exercise 8: An e-commerce platform experiences 1 billion product searches per day, with each search query generating 1 KB of 
             search metadata. How much storage space is required to store search metadata for a month?
 
-             
+Solution)    Per day = 1 billion * 1 KB
+                    = 10^9 *10^3
+                    = 10^12
+                    = 1 TB
+
+             Per month = 30 * 1 TB
+                       = 30 TB
+
+Exercise 9:  A music streaming service has 150 million users listening to an average of 30 songs per day, 
+             with each song lasting 4 minutes and encoded at 320 kbps. How much storage space is required to store 
+             music content for a year?
+Solution) 
