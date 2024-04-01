@@ -147,4 +147,26 @@ Solution)    Per day = 1 billion * 1 KB
 Exercise 9:  A music streaming service has 150 million users listening to an average of 30 songs per day, 
              with each song lasting 4 minutes and encoded at 320 kbps. How much storage space is required to store 
              music content for a year?
+
+Solution)    Per Day Per User Calculation:
+		Total data consumed per song = (4 minutes * 320 kbps) / 8 bits per byte (to convert from bits to bytes)
+		Total data consumed per song = (4 * 60 * 320 * 10^3) / 8 bytes
+		= 7.2 * 10^6 bytes
+		≈ 7 MB.
+
+	     Total data consumed per day per user = 30 songs * 7 MB
+		= 210 MB.
+
+	     Per Year Per User Calculation:
+		Total data consumed per year per user = 210 MB * 365 days
+		≈ 76.65 GB.
+
+	     For All Users Per Year Calculation:
+		Total data consumed per year for all users = 76.65 GB * 150 million users
+		≈  11,497.5 petabytes (PB)
+		≈  11.4975 exabytes (EB).
+
+Exercise 10: An IoT platform collects sensor data from 10 million devices, with each device generating 100 data points per minute,
+             and each data point being 100 bytes in size. How much storage space is needed to store sensor data for a week?
+
 Solution) 
