@@ -177,14 +177,14 @@ Total data generated per hour per device
 			   = 750,000 kilobytes
 	                   = 750 MB
 Per Day per Device Calculation:
-		= 24 hours * 750 MB
-		= 18,000 MB
-		= 18 GB
+				= 24 hours * 750 MB
+				= 18,000 MB
+				= 18 GB
 Per Week for 10 Million Devices Calculation:
- = 7 days * 18 GB per day per device * 10 million devices
- = 7 * 18 * 10 million GB
- = 1260 million GB
- = 1260 terabytes (TB)
+			 = 7 days * 18 GB per day per device * 10 million devices
+			 = 7 * 18 * 10 million GB
+			 = 1260 million GB
+			 = 1260 terabytes (TB)
 
 
                                               
