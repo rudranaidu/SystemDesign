@@ -27,6 +27,7 @@ Power of 2 and power of 10
 2^30 =  10^9 = 1 GB =  1 billion
 2^40 = 10^12 = 1 TB =  1 trillion
 2^50 = 10^15 = 1000 TB = 1000 trillions(1 PB)
+2^60 = 10^18 = 1000PB =  1 Exabyte (1 EB)
 
 Howmany bytes should we use for userID variable if accomodate 100 million users in 1 year?
      100 millions = 100* 10^6 = 10^8  it is equivalent to 2^30.
@@ -169,4 +170,23 @@ Solution)    Per Day Per User Calculation:
 Exercise 10: An IoT platform collects sensor data from 10 million devices, with each device generating 100 data points per minute,
              and each data point being 100 bytes in size. How much storage space is needed to store sensor data for a week?
 
-Solution) 
+Solution)    
+Total data generated per hour per device
+                           = 60 minutes * 100 data points per minute * 100 bytes per data point / 8 bits per byte
+			   = Total data generated per hour per device = 60 * 100 * 100 / 8 kilobytes
+			   = 750,000 kilobytes
+	                   = 750 MB
+Per Day per Device Calculation:
+		= 24 hours * 750 MB
+		= 18,000 MB
+		= 18 GB
+Per Week for 10 Million Devices Calculation:
+ = 7 days * 18 GB per day per device * 10 million devices
+ = 7 * 18 * 10 million GB
+ = 1260 million GB
+ = 1260 terabytes (TB)
+
+
+                                              
+         
+             
