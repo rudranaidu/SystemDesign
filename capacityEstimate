@@ -85,3 +85,41 @@ Solution:   For single DB servers it stores 100TB
             For 200 TB we need 2 servers
             DB servers perfrom 90% of their capacity . So we need 3 servers
             If RF is 3 , we need to 9 servers.
+
+Exercise 5: Consider a messaging application with 200 million daily active users. Each user sends an average of 20 messages per day,
+            with each message containing text data of 5 KB. How much data is required to store messages for a year?
+
+Solution:  DAU = 200 million
+           Per day each user = 20 messages
+           each message size = 5 KB
+
+           PerDay = 200*10^6*20*5*10^3
+                 = 2*10^2*10^6*10^2*10^3
+          	   = 2*10^13
+          	   = 2*10*10^12
+          	   = 2*10*1TB
+          	   = 20 TB we need per day
+	   
+           1 year ~ 300 * 20TB
+                 ~ 6000 TB
+          	   ~ 6PB
+Exercise 6: If a video streaming platform has 50 million users streaming videos at an average bitrate of 2 Mbps for 4 hours per day, 
+           How much storage space is needed to store video content for a month?
+
+         Per day = 4* 3600 (seconds) * 2* 10^6/8 (bits per byte)
+                = 4* 36 *10^2*2*10^6/8
+                = 4* 36*10^8 *2/8
+                 = 3*10^9
+                  ~ 3 GB
+
+         Per Month = 50*10^6 *30* 3*10^9
+                   = 5*3*3*10^17
+                   = 45* 10^17
+                   = 4 * 10 * 10^17
+                   = 4 * 10^18
+                   ~ 4 Exabytes
+               
+Exercise 7: A file-sharing service has 100 million users uploading files at an average rate of 1 GB per user per week.
+            How much storage space is needed to accommodate file uploads for 6 months?
+
+
