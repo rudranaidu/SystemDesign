@@ -25,7 +25,14 @@
          Backend tier with business logic
          Cache tier for faster response time, data in cache is subset of database tier
          Storage tier for datastorage and retrieval (store in row-major or column-major or files)
-		
+         Dive Deep into Microservice:
+         API details:
+	 Request/Response formats :
+	 DB schema with tables and column details
+	 Cache handling
+	 Invalidation of cache
+	 which data needs to be stored in cache
+
   6) Identify the Need for scale
        In each micro service , Identify the need for scale
 	  Need to scale for storage
