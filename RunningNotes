@@ -1,0 +1,6 @@
+Gateway : It provides connecting point(secure interface) to the outside world to the internal services.
+Routing external requests  to internal services
+when you are hitting domain.com in the URL , you are actually hitting hte gateway.
+BLock list APIs, It provides RateLimiting capabilities
+
+Authentication and Global caching:
