@@ -12,8 +12,8 @@ Rounded numbers for Quick calculations
    3 years = 1000 days
    1 day = 100000 seconds
    1 second = 10^3 milliseconds
-              10^6 milliseconds
-              10^9 milliseconds
+              10^6 microseconds
+              10^9 nanoseconds
    1 commodity server = 100 TB of disk
                       = 128 GB of RAM
                       = 32 cores * 8 threds = 250 threads
