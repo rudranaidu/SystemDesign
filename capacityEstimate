@@ -26,8 +26,8 @@ Power of 2 and power of 10
 2^20 =  10^6 = 1 MB =  1 million
 2^30 =  10^9 = 1 GB =  1 billion
 2^40 = 10^12 = 1 TB =  1 trillion
-2^50 = 10^15 = 1000 TB = 1000 trillions(1 PB)
-2^60 = 10^18 = 1000PB =  1 Exabyte (1 EB)
+2^50 = 10^15 = 1 PB =  1 quadrillion
+2^60 = 10^18 = 1 EB =  1 quintillion
 
 Howmany bytes should we use for userID variable if accomodate 100 million users in 1 year?
      100 millions = 100* 10^6 = 10^8  it is equivalent to 2^30.
