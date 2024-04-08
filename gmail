@@ -55,10 +55,22 @@ ProfileService : It handles User profile, create/update/delete operations
    InMemory cache vs Distributed cache:
             we need to write additional code for inmemory cache. we also need to allocate additional memory.
             If the servcie is distributed service , updating cache requires updating multiple nodes which results fanout.
-            Inmemory cache required process call , But global cache requires Network call.
+            In memory cache required process call , But global cache requires Network call.
             In this scenario Global cache is better as our servcie is distributed service.
 
-EmalService: 
+EmalService: It sends/Receive email from same or different domains.
+             
+MessageQueueService: It receives email from EmailService and send it to SpamDetector, VirusScanner & SearchService
+
+SearchService: It maps keywords in emails to their locations. It creates inverted indexes.
+
+PrefrenceService: It pulls emails from MessageQueue and assigns preferences to emails
+
+
+
+
+              
+              
         
          
 
