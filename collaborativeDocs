@@ -64,26 +64,33 @@ Identify the microservices:
 - `getDocumentVersions`: Retrieves all versions of a document from the database.
 - `getLatestDocumentVersion`: Retrieves the latest version of a document from the database.
 
-	#### 1. Snapshot-Based Versioning:
-
+ 1. Snapshot-Based Versioning:
 	- Google Docs employs a snapshot-based approach to versioning. Each time a user makes changes to a document, Google Docs captures the document's current state as a snapshot.
-
-	#### 2. Version Identifier:
-
+ 2. Version Identifier:
 	- Each snapshot is assigned a unique version identifier. This identifier could be a timestamp or a sequentially increasing number, representing the order of changes.
-
-	#### 3. Metadata Storage:
-
+ 3. Metadata Storage:
 	- Metadata associated with each version includes information such as the user who made the changes, the timestamp of the changes, and any other relevant metadata.
-	- 
-    4. Differential Storage:
-	
+  4. Differential Storage:
 	 To optimize storage space and performance, Google Docs often stores only the differential changes between consecutive versions rather than storing complete snapshots for each version. This is achieved through techniques like delta encoding or using data structures like trees to represent changes.
 
-[[Compression and caching]] 
-[[Concurrent writes and locks]]
+Compression and caching:
+        Use compression technique called lossless compression
+ 	compression again comes with processing cost. Rather than compressing the every
+ 	version we compress only the latest document.
+ 	we also put latest document in the cache so that users can access it very fast.
 
-Permissions: Permissions are handled by separate service. So we can store all permission related data in a separate table. A service called permissionManager checks whether a user has permissions to edit/read the document. If a particular user doesn't have a permission then Service throws error unauthorised access.
+Concurrent writes and locks:
+  We can acquire locks to handle concurrent writes.
+  pessimistic and optimistic locks. But locks decreases the performance.
+ So we need to take a different approach to handle this scenario.
+  Maintain two copies of the document between two users and maintain all operations differently and finally merge the document.
+  There are different algorithms to handle this
+ 1) Operational transform-> Operational Transform is a centralised algorithm which tracks updates across clients. 
+ 2) Conflict Free Replicated Datatype(CRDT)
+
+Permissions: Permissions are handled by separate service. So we can store all permission related data in a separate table. 
+A service called permissionManager checks whether a user has permissions to edit/read the document. 
+If a particular user doesn't have a permission then Service throws error unauthorised access.
 
 
 
