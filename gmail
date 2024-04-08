@@ -99,6 +99,30 @@ APIContracts:
                     void deleteProfile(username)
                     getProfile(username)
 
+ DriveService:
+
+             void uploadFile(file, directory,accessControlList, uploaer)
+             boolean deleteFile(file, directory)
+             File getFile(filenName, Directory, user, requestngActor)
+             File[] getFiles(fileNames[], user, requestingActor)
+
+Contacts Service:
+               void createContact(sender, receiver)
+               void deleteContact(sender, receiver)
+               Group createGroup(creator, members, name, groupPhotoURL)
+               void addMembers(groupID, user, members)
+               void updateGroup(groupID, user, groupName, groupPhotoURL)
+               User[] getUsersWithRoles(groupID, roles)
+
+EmailService:
+
+              Email sendEmail(sender, receiver, content, attachments)
+              void deleteEmail(requesterID, emailID)
+              Email getEmail(receiver)
+              
+
+
+
    
 
 
