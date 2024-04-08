@@ -64,7 +64,46 @@ MessageQueueService: It receives email from EmailService and send it to SpamDete
 
 SearchService: It maps keywords in emails to their locations. It creates inverted indexes.
 
-PrefrenceService: It pulls emails from MessageQueue and assigns preferences to emails
+PreferenceService: It pulls emails from MessageQueue and assigns preferences to emails
+
+SpamDetector Service: It checks the subject and contents of the email and to determine the spam. It checks the email in regular intervals or
+                      whenever there is a new email.
+
+VirusDetectorService: It checks the contents and attachements of email for any virus.
+
+ContactManager: It pulls processed emails from Queue and maps sender and receiver.
+
+SMTPServer: It sends emails to external server
+
+IMAPServer : It receives emails from external server.
+
+
+APIContracts:
+   GatewayService: voidBlockIPaddress(IPAddress,endPoints[], duration)
+
+   ServiceManager:  voidRegister(service, ipAddress[], endPoints[])
+                    Service routeRequest(service, request, apiEndpoint, user)
+
+    AuthServcie :
+                  void register(userName, password, phoneNumber)
+                  void login(username, password)
+                  token verify(username, otp)
+                  bool authenticateUser(userName, token)
+                  void logout(username, token)
+
+  MessageService:
+                    voidSendSMS(receiver, smstemplate, params[], sendingService)
+  ProfileService:
+                    void createProfile(username, profilePictureURL, DOB, Gender)
+                    void updateProfile(username, profile)
+                    void deleteProfile(username)
+                    getProfile(username)
+
+   
+
+
+
+
 
 
 
