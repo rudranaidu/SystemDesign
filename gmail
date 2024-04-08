@@ -1,0 +1,30 @@
+Functional requirements:
+   1) User Registration and profile creation
+   2) Sending emails with attachements 
+   3) Set preferences for emails
+   4) Search emails
+   5) Tagging
+   6) Spam and virus detection
+   7) contacts and groups
+   8) Implementing service registry and proxies -> This is common for all system designs using Microservices architectures
+
+Questions need to ask:
+    1) what is the maximum size of an attachement
+    2) what is the maximum size of contacts in group
+    3) No of users in a day/ how many mails per user?
+    4) what is the average size of mail
+    
+
+Identify the Microservices:
+     1) Profile service
+     2) User authentication/Autherization service
+     3) EmailService
+     4) SearchService
+     5) Spamdetection Service
+     6) VirusScannerService
+     7) ContactMangaementService
+     8) PreferencesService
+     9) ServiceRegistry
+
+Implement ServiceRegistry:
+    
