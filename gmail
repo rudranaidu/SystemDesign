@@ -162,8 +162,12 @@ SMS
   content  String
 
 SMSTemplate
-   Type
-   content
+   Type   String
+   content String
+
+ServiceManager
+     service  String
+     endpoints String
 
 
 
