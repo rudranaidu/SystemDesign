@@ -118,9 +118,57 @@ EmailService:
 
               Email sendEmail(sender, receiver, content, attachments)
               void deleteEmail(requesterID, emailID)
-              Email getEmail(receiver)
-              
+              Email getEmails(receiver)
+              Attachments[] getEmailAttachement(emailID, requester)
 
+Search Engine service:
+               Email[] search(searchParams)
+
+Database design:
+   Email table
+      emailID   Integer
+      sender    String
+      Receiver  String
+      subject   String
+      timeStamp  timestamp
+
+  EmailAttachements
+       emailID   Integer
+       Content   String
+       Attachements boolean
+
+  EmailTags
+        emailID   Integer
+         Tags     Array<Strings>
+
+  SearchEngine Database
+       Keywords   String
+       EmailIDs    Array<String>
+
+User
+    username string
+    Password  string
+    phoneNumber String
+    verfied   Boolean
+
+UserAuthentication
+        userName String
+        secretCode String
+        timestamp   timestamp
+
+SMS
+  Sender  String
+  Receiver String
+  content  String
+
+SMSTemplate
+   Type
+   content
+
+
+
+
+ 
 
 
    
