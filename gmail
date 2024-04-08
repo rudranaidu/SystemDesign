@@ -13,7 +13,6 @@ Questions need to ask:
     2) what is the maximum size of contacts in group
     3) No of users in a day/ how many mails per user?
     4) what is the average size of mail
-    
 
 Identify the Microservices:
      1) Profile service
@@ -26,7 +25,7 @@ Identify the Microservices:
      8) PreferencesService
      9) ServiceRegistry
 
-Implement ServiceRegistry:
+ServiceRegistry:
    We need gateway to receive external requests and route it to correct internal services.
    Whenever a service is switched on it register itself to ServiceRegistry.So the registry maps
    the method to service. We also need to implement functionality to check if otherservices or 
@@ -37,7 +36,32 @@ Implement ServiceRegistry:
               ServiceManager : It keeps the registry, maps methods to handlers
               DistributedCache : Since mapping does not change freequently we can store the mapping in cache.
 
-ImplementAuthService: 
+AuthService: 
+             We need authservice to authenticate the user with username and password.
+             We also need profile service to register new user.
+             It also updates the cache whenever the userinforation is updated.
+             It also checks whether the user is verified or not. using SMS code
+
+MessageService: to Send OTP message through SMS or Email. It also maintains SMS templates
+
+ProfileService : It handles User profile, create/update/delete operations
+
+    Database: For profile service -> it stores all userinfo
+              For Auth service ->  it store name, encrypted password, onetime code, usersecret code which is used to authenticate the user
+              For Message servcie -> it store message templates
+    Distributed cache:  User token is stored in distributed cache. Instead of making a call to Authservice everytime , we can make a call to Cache
+                        which is more efficient.
+    
+   InMemory cache vs Distributed cache:
+            we need to write additional code for inmemory cache. we also need to allocate additional memory.
+            If the servcie is distributed service , updating cache requires updating multiple nodes which results fanout.
+            Inmemory cache required process call , But global cache requires Network call.
+            In this scenario Global cache is better as our servcie is distributed service.
+
+EmalService: 
+        
+         
+
 
 
     
