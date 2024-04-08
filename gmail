@@ -27,4 +27,17 @@ Identify the Microservices:
      9) ServiceRegistry
 
 Implement ServiceRegistry:
+   We need gateway to receive external requests and route it to correct internal services.
+   Whenever a service is switched on it register itself to ServiceRegistry.So the registry maps
+   the method to service. We also need to implement functionality to check if otherservices or 
+   operational or not.
+
+   Components required:
+              Distributed gateway : it blocks malicious IPaddresses, routes external requests, Translate HTTP to other protocols
+              ServiceManager : It keeps the registry, maps methods to handlers
+              DistributedCache : Since mapping does not change freequently we can store the mapping in cache.
+
+ImplementAuthService: 
+
+
     
