@@ -1,0 +1,89 @@
+User's view : Design a Collaborative Editor that allows multiple users to concurrently edit documents in real-time.
+
+Functional requirements
+ User should
+
+ Storing, retrieving, and editing documents
+ Sharing permissions: READ, EDIT, LINK-SHARING
+ Notifications on email
+ Version History
+ Spell Checking
+ Comments Support
+ Offline and Collaborative Editing
+ 
+NonFunctional requirements:
+	What is the size of documents
+	Which  is preferred consistency or Availability
+	How many clients can collaborate? limit on number clients
+	User Locations: Users can be globally distributed or not
+
+Identify the microservices:
+ 1) User Authentication/Authorisation service
+ 2) Document management service
+ 3) Collaborative service 
+ 4) Communication service
+ 5) Notification service
+
+ Dive Deep into Microservices:
+ 
+  Document schema design:
+1. What would be the database schema of a stored document?
+     documentID
+     creatorID
+     creationTime
+     updationTime
+      above can be stored in RDBMS
+      
+      Actual document content can be stored in NoSQL databases like document DB
+       documentID
+       content 
+       
+     Another way is we can store entire data into NOSQL as docID and content
+     content contains all metadata & actual content. 
+      {
+          authorID:
+          creationTime:
+          updationTime:
+          content: {
+          
+           }
+      }
+   What technology solution should we use to store documents? File Storage, RDBMS or NoSQL?
+	We can use Cassandra, Dynamo DB etc
+	In Google docs, maximum document size is 50MB = We need 2^20 characters
+   
+ .  Maintaining Version History:
+	1. Document Table:
+      Stores metadata about each document.
+	  Columns: document_id (Primary Key), title, content, owner_id, created_at, updated_at.
+	 2. Version Table:
+	  Stores snapshots of document versions.
+	 Columns: version_id (Primary Key), document_id (Foreign Key), content, editor_id, created_at.
+
+- `saveDocumentVersion`: Inserts a new version of the document into the database.
+- `getDocumentVersions`: Retrieves all versions of a document from the database.
+- `getLatestDocumentVersion`: Retrieves the latest version of a document from the database.
+
+	#### 1. Snapshot-Based Versioning:
+
+	- Google Docs employs a snapshot-based approach to versioning. Each time a user makes changes to a document, Google Docs captures the document's current state as a snapshot.
+
+	#### 2. Version Identifier:
+
+	- Each snapshot is assigned a unique version identifier. This identifier could be a timestamp or a sequentially increasing number, representing the order of changes.
+
+	#### 3. Metadata Storage:
+
+	- Metadata associated with each version includes information such as the user who made the changes, the timestamp of the changes, and any other relevant metadata.
+	- 
+    4. Differential Storage:
+	
+	 To optimize storage space and performance, Google Docs often stores only the differential changes between consecutive versions rather than storing complete snapshots for each version. This is achieved through techniques like delta encoding or using data structures like trees to represent changes.
+
+[[Compression and caching]] 
+[[Concurrent writes and locks]]
+
+Permissions: Permissions are handled by separate service. So we can store all permission related data in a separate table. A service called permissionManager checks whether a user has permissions to edit/read the document. If a particular user doesn't have a permission then Service throws error unauthorised access.
+
+
+
