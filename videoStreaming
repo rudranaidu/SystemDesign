@@ -1,0 +1,48 @@
+
+
+
+Capacity Estimate:
+
+1) Howmuch video will need to be processed per livestream
+
+Let us assume that resolutions we want to serve are 1080P,720P, 480P,360P
+Let us also assume that encoding of these videos is h264
+
+A cricket match lasts for approximately 10 hours.
+A 2 hrs HD movie size is 2 GB and hence we assume that cricket match size would be 10GB
+
+Raw video will be broken into segments and each segment will be processed
+into multiple resolutions and codecs.
+
+1080P resolution will be about =  10GB
+720P footage will be about 10/2 = 5 GB
+480P footage will be about 10/4 = 2.5 GB
+360p footage will be about 10/8 = 1.25GB
+
+Total 18.75 GB
+Let use assume we have 4 codecs
+18.75 * 4 = 75 GB
+
+
+2) Howmuch data will be tranformed from CDN to users in single livestream?
+
+Assume no of users watching match is 10 millions users
+Assume that 50% of users having HD videos and 50% users having mobile devices
+For 10hrs match we required 10 GB data. On average user watch 50% live stream
+Total datatransfer = sum of ( 50%HD Devices + 50% mobile devices) * 50/100
+= ( 50/100 * 10^6 * 10GB + 2.5 GB* 50/100*10^6) * 50/100
+=   3.125 PB
+
+3) Howmuch time would it take to send data from event to users device?
+
+   For watching cricket match 10 hrs 10 GB data
+   ie 3600 seconds -> 10 GB
+   1 second -> 3 KB
+   
+   in 1 second 3KB of data is transferred from CDN to end user device
+   Total time =  video uploadTime + Geographial server to CDN + CDN to endDevice
+   Assume that 3KB data will be tranferred from Geographical servers to CDN in 150 milli seconds
+   and also assume that it takes 150 milli seconds to transfer 3KB data to upload service.
+   Total latency = 1 second + 0.3 + 0.3
+                = 1.3 seconds
+				
