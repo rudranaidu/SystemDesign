@@ -1,3 +1,40 @@
+Functional Requirements:
+     1) Video transformations
+     2) Video storage
+     3) Transport video to enduser
+     4) User Profiles and Preferences
+     5) Search and Discovery of Videos
+     6) User Comments and Ratings
+     7) Subscription and Payment Integration
+     8) Recommendation System
+
+Questions to ask?
+	What types of videos will be supported (e.g., live streaming, on-demand)?
+	What is the expected user base and concurrency?
+	What is the expected average video duration and quality (resolution, bitrate)?
+	Are there any geographic restrictions on content delivery?
+	What are the storage and bandwidth requirements?
+	How will video content be monetized (e.g., subscription, ads)?
+	How will user engagement be measured and analyzed?
+	Is there any requirement for content moderation and censorship?
+
+Identified Microservices:
+
+	User Management Service
+	Authentication Service
+	Video Upload Service
+	Video Encoding Service
+	Video Storage Service
+	Video Retrieval Service
+	Video Streaming Service
+	User Profile Service
+	Search Service
+	Recommendation Service
+	Commenting Service
+	Rating Service
+	Subscription Service
+	Payment Integration Service
+
 Capacity Estimate:
 
 1) Howmuch video will need to be processed per livestream
