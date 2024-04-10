@@ -36,15 +36,42 @@ Identified Microservices:
 	Payment Integration Service
 
 Flow:
-        Ingest videos to VideoEncodingService using RTMP protocol.
-	Transform videos into different resolutions and codecs
-	Assigning workers
-	Publishing and subscribing video events
-	
-	VideoEncodingService create muliple tasks and published into Queue
-	and workers takes tasks and process it and stores it in Distributed File stystem
-	and same time it also publshes event in Queue saying that the task is completed
-	and then workers subscribed to the queue will take the video and send it to end users
+1. Video Ingestion:
+	Users upload videos to the Video Upload Service through the user interface.
+	The Video Upload Service receives the video files and stores them temporarily.
+	Once uploaded, the Video Upload Service triggers a job to the Video Encoding Service for transcoding.
+2. Video Encoding:
+	The Video Encoding Service listens for incoming jobs from the Video Upload Service.
+	It assigns tasks to available encoding workers for transcoding videos into different resolutions and codecs.
+	Each worker processes the assigned tasks and encodes the videos accordingly.
+	Once encoding is complete, the workers store the transcoded videos in the Distributed File System (DFS).
+	After encoding, the Video Encoding Service publishes an event to a message queue indicating that the encoding task is completed.
+3. Video Publication:
+	The Video Retrieval Service listens for events from the message queue indicating the completion of encoding tasks.
+	Upon receiving the event, the Video Retrieval Service retrieves the transcoded videos from the DFS.
+	It then publishes another event to the message queue indicating that the videos are ready for streaming.
+4. Video Streaming:
+	The Video Streaming Service subscribes to events from the message queue indicating the availability of videos for streaming.
+	Upon receiving the event, the Video Streaming Service retrieves the videos from the DFS.
+	It then streams the videos to end-users in real-time using protocols like HTTP Live Streaming (HLS) or Dynamic Adaptive Streaming over HTTP (DASH).
+	Users can access the streamed videos through the user interface of the application.
+5. Additional Services:
+	The User Management Service and Authentication Service handle user registration, authentication, and authorization.
+	The User Profile Service manages user profiles and preferences.
+	The Search Service enables users to search for videos based on keywords, tags, or categories.
+	The Recommendation Service provides personalized video recommendations to users.
+	The Commenting Service allows users to comment on videos.
+	The Rating Service enables users to rate videos.
+	The Subscription Service manages user subscriptions to channels or content creators.
+	The Payment Integration Service handles payment processing for premium content or subscriptions.
+
+Flow Summary:
+Users upload videos to the application.
+Uploaded videos are transcoded into different resolutions and codecs by the Video Encoding Service.
+Transcoded videos are stored in the Distributed File System.
+Events are published to indicate the completion of encoding tasks and availability of videos for streaming.
+The Video Streaming Service streams the videos to end-users.
+Additional services handle user management, authentication, profile management, search, recommendation, commenting, rating, subscription, and payment integration.
 
 API Contracts:
 
