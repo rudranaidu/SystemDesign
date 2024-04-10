@@ -1,4 +1,3 @@
-
 Functional requirements
        1. UserRegistration& ProfileManagment
        2. Driver/cab onboarding
@@ -49,6 +48,3 @@ if demand is > threshold then
          ETAs <= threshold
     then send request to that driver 
  UserManagementService
-
-
-
