@@ -35,6 +35,44 @@ Identified Microservices:
 	Subscription Service
 	Payment Integration Service
 
+Flow:
+        Ingest videos to VideoEncodingService using RTMP protocol.
+	Transform videos into different resolutions and codecs
+	Assigning workers
+	Publishing and subscribing video events
+	
+	VideoEncodingService create muliple tasks and published into Queue
+	and workers takes tasks and process it and stores it in Distributed File stystem
+	and same time it also publshes event in Queue saying that the task is completed
+	and then workers subscribed to the queue will take the video and send it to end users
+
+API Contracts:
+
+User Management Service: createUser(), updateUser(), getUser()
+Authentication Service: authenticateUser(), generateToken(), verifyToken()
+Video Upload Service: uploadVideo(), getUploadStatus()
+Video Encoding Service: encodeVideo(), getEncodingStatus()
+Video Storage Service: storeVideo(), retrieveVideo()
+Video Retrieval Service: getRecommendedVideos(), searchVideos()
+Video Streaming Service: streamVideo(), pauseVideo(), seekVideo()
+User Profile Service: getUserProfile(), updateUserProfile()
+Search Service: searchVideos(), filterVideos()
+Recommendation Service: getRecommendedVideos(), updateRecommendations()
+Commenting Service: addComment(), deleteComment(), getComments()
+Rating Service: rateVideo(), getVideoRating()
+Subscription Service: subscribeUser(), unsubscribeUser(), getSubscriptions()
+Payment Integration Service: processPayment(), verifyPayment()
+
+Database Design:
+
+User table: userID, username, email, password, role
+Video table: videoID, title, description, duration, resolution, bitrate, uploadTime
+UserVideo table: userID, videoID, watchedTime, progress
+Comment table: commentID, videoID, userID, content, timestamp
+Rating table: ratingID, videoID, userID, ratingValue, timestamp
+Subscription table: subscriptionID, userID, subscribedUserID, subscriptionType, startDate, endDate
+Payment table: paymentID, userID, paymentAmount, paymentStatus, paymentDate
+
 Capacity Estimate:
 
 1) Howmuch video will need to be processed per livestream
