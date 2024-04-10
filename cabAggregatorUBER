@@ -24,7 +24,9 @@ Identify Microservices
       PaymenetService
       NotificationService
       UserRatingService
+
 Deepdive into Microservices
+
 PricingService
     We maintain RuleEngine to calculate pricing
     Pricing involves different rules. Based on src,destination, peektime, demand etc.Need to calculate the demand ie if more number of  users booking the ride from same src then demand is high
@@ -34,11 +36,11 @@ if demand is > threshold then
     price = price\*1.1;
  
  Surging pricing can be calculated using above forumla
-  ETACalculationService
+  ETACalculationService:
      We will use location based DB's like QuadTree, HilbertCurve
      or  Graph data structure to store locations and their connectivity.
      User A-Star algorithm to calculate ETA.
- RideMatchingService
+ RideMatchingService:
        Find nearby Driver who is ready to accept a ride. 
        Give Source and Destination
        If the driver is not accepting then increase the search radius.
@@ -47,4 +49,4 @@ if demand is > threshold then
        then find bestETA among all 
          ETAs <= threshold
     then send request to that driver 
- UserManagementService
+ UserManagementService:
