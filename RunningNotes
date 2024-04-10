@@ -4,8 +4,9 @@ when you are hitting domain.com in the URL , you are actually hitting hte gatewa
 BLock list APIs, It provides RateLimiting capabilities
 
 Authentication and Global caching:
-
 Reasons for KAFKA performance:
      KAFKA is distributed messaging system. 
      It uses sequential accesss and Zero copy principle (Direct Memory access)-> it makes use of OS cache directly
+     Random access means -> it access data from different locations
 
+   
