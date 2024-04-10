@@ -1,1 +1,54 @@
 
+Functional requirements
+       1. UserRegistration& ProfileManagment
+       2. Driver/cab onboarding
+       3. RideRequest
+       4. Pricing
+       5. Driver matching
+       6. ETA evaluation
+       7. DriverTracking
+       8. PaymentService
+       9. UserRating
+Questions need to ask
+      1) What is the expected size of users
+      2) What are the number of concurrent users
+      3) Is the application is Global
+      4) Consistency Vs Availability
+Identify Microservices
+      UserManagmentService
+      AuthenticationService
+      PricingService
+      RideRequestService
+      ETACalculationService
+      RideMatchingService
+      DriverTrackingService
+      PaymenetService
+      NotificationService
+      UserRatingService
+Deepdive into Microservices
+PricingService
+    We maintain RuleEngine to calculate pricing
+    Pricing involves different rules. Based on src,destination, peektime, demand etc.Need to calculate the demand ie if more number of  users booking the ride from same src then demand is high
+  Demand = no.of users requestingRide/totalNumberofAvailabe   drivers
+        
+if demand is > threshold then 
+    price = price\*1.1;
+ 
+ Surging pricing can be calculated using above forumla
+  ETACalculationService
+     We will use location based DB's like QuadTree, HilbertCurve
+     or  Graph data structure to store locations and their connectivity.
+     User A-Star algorithm to calculate ETA.
+ RideMatchingService
+       Find nearby Driver who is ready to accept a ride. 
+       Give Source and Destination
+       If the driver is not accepting then increase the search radius.
+   Here we need to find proximity of drivers from the customer.
+     Query all drivers around the source 
+       then find bestETA among all 
+         ETAs <= threshold
+    then send request to that driver 
+ UserManagementService
+
+
+
