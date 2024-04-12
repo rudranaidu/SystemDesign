@@ -1,1 +1,47 @@
 
+ # Functional Requirements
+   1) Finding the best Route from SRC to Destination
+   2) Finding ETA
+   3) Finding Different locations
+   4) Sharing the location
+   5) Adding locations
+   6) Notifying updates to the user
+   7) Location History
+   
+   Optional requirements
+  1) UserRegistration
+  2) Ratings and reviews
+  
+## QuestionsToAsk
+- User Base Size: Determine the expected number of users accessing Google Maps daily.
+- User Interactions: Assess the frequency of user actions like map searches, route planning, and location sharing.
+- Object Size: Evaluate the size of data transferred for map tiles, location data, and directions.
+- Geographical Distribution: Identify where users are located to optimize service delivery.
+- Consistency vs. Availability: Decide whether to prioritize consistency (data accuracy) or availability (continuous service uptime) in the system.
+
+ ## Microservices
+1) Finding the best Route from SRC to Destination
+    Minimise the routes: We can use Hub approach. Find a hub (people uses most common route)and start from that point ...in this way we can reduce the no of nodes. Google uses graph partitioning algorithms and artificial intelligence to split roads or entire regions in an optimal way to find these hubs. This technique can also be applied to public transport like bus and metro stations.
+	
+2) Find all possible routes between A and B and returns best route
+ For this we need to store all intermediate points or nodes in GrpahDB like  Neo4j
+ and then apply A* algorithm.
+
+3) Nearest stores, Gyms, Medical shops:
+     For this we can use GeoHash algorithm to build locations which further used  find the shops and relevant information with in walkable distance. Based on Latitude and Longitude it finds the nearest locations.
+4) Adding a new locations to Graph: Again add Longitude and Latitude and use
+     Graph DBs to add locations
+ 
+  5) LocationTracking: Push locations updates for every 3 or 5 minutes to the servers
+      What if the connection lost while driving. Then during that time use approximation and update Location.
+ 6) Traffic congestion Notifications:
+
+
+Note: Hilbert curves and QuadTrees helps us to condense 2D space into 1D spaces
+QudadTrees do not store pathway information and hence not suited for roadway
+networks.
+
+Goehashes are fixed-length binary strings. They provide approximate proximity filters through prefix matching
+ To find best possible routes : Dijkstra, A* algorithms 
+ A* algorithm: It provides good approximate route  amongst many routes efficiently.
+
