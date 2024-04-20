@@ -1,0 +1,89 @@
+Initial Analysis
+Analyse the system and make your three core assumptions. 
+
+1. Is it read or write heavy? 
+2. Distributed system or single server? 
+3. What's more important consistency or availability? 
+
+
+Functional Requirements
+- Define what's the core feature of Netflix. 
+- Put together a set of support features that add a certain level of convenience to the bare bones core features.
+
+Non-Functional Requirements
+
+Define three non-functional requirements the system should meet to provide a good user experience.  
+
+Scale of the System
+
+What are the questions you would ask the interviewer to capture the scale of Netflix?   
+
+---
+Capacity Estimation
+
+ Estimate Throughput 
+ 	Estimate the throughput (request per second) that is required by Netflix. 
+
+ Estimate Bandwidth 
+	Estimate the required bandwidth. 
+    Some of the numbers captured initially in **Task 4**. Besides those you will also need the requests per second you just calculated. 
+
+ Estimate Storage 
+   Estimate you need to calculate is storage. Typically the interviewer wants to see a time horizon of 5 years. Assume that's the case here. 
+
+----
+Data Model
+
+Entities & Attributes 
+Define the entities and the associated attributes. 
+
+Relationships
+Define the relation ships between the entities.
+
+Databases 
+Select and justify the most suitable databases for the different portions of data.
+
+---
+## API Design  
+
+### Core API Endpoints
+Define the core API endpoints and their responses which the system needs to expose to enable the features defined in the functional requirements.
+
+---
+System Design 
+
+Design Video Upload
+Design the architecture required for the video upload feature of Netflix.   
+
+ Design Thumbnail Creation
+Add the system components required to create the Thumbnails as part of the processing pipeline. 
+
+ Design Streaming
+Design the architecture required to stream out the fully uploaded video. 
+
+ Design Search 
+Add all system components required to enable the search feature we still have to implement. 
+
+---
+ Design Discussion
+
+ Justification Questions
+- Why did you pick a relational DB to store your user data over a non-relational DB?
+- You have not added any caches besides the CDN. Where do you see potential to add an additional cache and why? 
+- What do you expect to be the benefits and limitations?
+
+ Extension Questions
+Add two additional functional requirements. This makes it necessary to extend the system's architecture but also the data model and the API design.    
+
+1. Admins can upload promo images for each video.
+2. User should see a personalized selection for recommended movies on their Netflix dashboard, based on their watch history.
+
+ Deep-dive Questions
+
+- Why did you decide to implement an additional search engine database? What would be an alternative design to enable the search feature?    
+ 
+- Which kinds of search engine DB implementations do you know, and which once would you use in this Netflix architecture and why?
+
+- You are using load balancers in your design to route traffic to different instances of your services, can you explain what Round-Robin Load Balancing is, in this context?
+
+- You are using a video CDN in your design, can you explain how a DCN works under the hood and for which other use cases there are, CDNs are a great choice for?  
