@@ -1,46 +1,48 @@
-Initial Analysis
+----
+## Requirements Engineering 
+
+### Initial Analysis
 Analyse the system and make your three core assumptions. 
 
 1. Is it read or write heavy? 
 2. Distributed system or single server? 
 3. What's more important consistency or availability? 
 
-
-Functional Requirements
+### Functional Requirements
 - Define what's the core feature of Netflix. 
 - Put together a set of support features that add a certain level of convenience to the bare bones core features.
 
-Non-Functional Requirements
+### Non-Functional Requirements
 
 Define three non-functional requirements the system should meet to provide a good user experience.  
 
-Scale of the System
+### Scale of the System
 
 What are the questions you would ask the interviewer to capture the scale of Netflix?   
 
 ---
-Capacity Estimation
+## Capacity Estimation
 
- Estimate Throughput 
- 	Estimate the throughput (request per second) that is required by Netflix. 
+### Estimate Throughput 
+Estimate the throughput (request per second) that is required by Netflix. 
 
- Estimate Bandwidth 
-	Estimate the required bandwidth. 
-    Some of the numbers captured initially in **Task 4**. Besides those you will also need the requests per second you just calculated. 
+### Estimate Bandwidth 
+Estimate the required bandwidth. 
+Some of the numbers captured initially in **Task 4**. Besides those you will also need the requests per second you just calculated. 
 
- Estimate Storage 
-   Estimate you need to calculate is storage. Typically the interviewer wants to see a time horizon of 5 years. Assume that's the case here. 
+### Estimate Storage 
+Estimate you need to calculate is storage. Typically the interviewer wants to see a time horizon of 5 years. Assume that's the case here. 
 
 ----
-Data Model
+## Data Model
 
-Entities & Attributes 
+### Entities & Attributes 
 Define the entities and the associated attributes. 
 
-Relationships
+### Relationships
 Define the relation ships between the entities.
 
-Databases 
+### Databases 
 Select and justify the most suitable databases for the different portions of data.
 
 ---
@@ -50,35 +52,35 @@ Select and justify the most suitable databases for the different portions of dat
 Define the core API endpoints and their responses which the system needs to expose to enable the features defined in the functional requirements.
 
 ---
-System Design 
+## System Design 
 
-Design Video Upload
+### Design Video Upload
 Design the architecture required for the video upload feature of Netflix.   
 
- Design Thumbnail Creation
+### Design Thumbnail Creation
 Add the system components required to create the Thumbnails as part of the processing pipeline. 
 
- Design Streaming
+### Design Streaming
 Design the architecture required to stream out the fully uploaded video. 
 
- Design Search 
+### Design Search 
 Add all system components required to enable the search feature we still have to implement. 
 
 ---
- Design Discussion
+## Design Discussion
 
- Justification Questions
+### Justification Questions
 - Why did you pick a relational DB to store your user data over a non-relational DB?
 - You have not added any caches besides the CDN. Where do you see potential to add an additional cache and why? 
 - What do you expect to be the benefits and limitations?
 
- Extension Questions
+## Extension Questions
 Add two additional functional requirements. This makes it necessary to extend the system's architecture but also the data model and the API design.    
 
 1. Admins can upload promo images for each video.
 2. User should see a personalized selection for recommended movies on their Netflix dashboard, based on their watch history.
 
- Deep-dive Questions
+## Deep-dive Questions
 
 - Why did you decide to implement an additional search engine database? What would be an alternative design to enable the search feature?    
  
