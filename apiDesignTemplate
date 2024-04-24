@@ -1,0 +1,89 @@
+signUp:
+
+Request: POST  /api/v1/signUp
+        X-API-key: api_key
+         {
+            name:
+            emailID:
+             password:
+         }
+
+Response: 201 (Resource created)
+         {
+          "message:"
+         }
+
+400 Bad Request
+409 Conflict
+500 Internal Server Error
+
+signIn
+
+POST api/v1/signIn (Creating a user session)
+X-API-keys:
+{
+ userName:
+ Password:
+}
+
+Response:
+200 OK
+{
+  auth_token:
+}
+
+signOut
+
+Delete api/v1/signOut (Delete user session)
+X-API-Key: api_key
+Authorization: auth_token
+
+Response:
+200 OK
+
+**Read User:**
+GET /api/v1/users/{userId}
+ X-API-key: api_key
+ Authorization: auth_token
+
+Response:
+200 OK
+{
+  userId: String,
+  name: String,
+  email: String
+}
+
+**Update User:**
+
+PUT /api/v1/users/{userId}
+X-API-key: api_key
+Authorization: auth_token
+
+{ 
+name: String,
+email: String,
+password: String
+}
+
+Response: 
+
+200 OK
+{
+  message: "User updated successfully"
+}
+
+**Delete user**
+DELETE /api/v1/users/{userId}
+X-API-key: api_key
+Authorization: auth_key
+
+Response
+200 OK
+{
+ message: "User deleted successfully"
+}
+
+400 -> bad request
+404 -> if user is not found
+500 -> internal server error
