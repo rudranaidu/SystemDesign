@@ -1,3 +1,16 @@
+
+Fourmulas for capacity estimate
+Throughput (QPS=> Query per second): No.Of Daily activeusers * No of operations daily/10^5
+                  
+Bandwidth: Find each operation size
+           Find Read : Write ratio 
+
+Read bandwidth =  No of opertions per second * size * read/read+write
+Write bandwidth =  No of opertions per second * size * write/read+write
+
+Storage capacity = since we already know the size of operation per second , we can extrapoloate those values to 1 year
+
+
 Optimal API latency is 200 milli seconds.
 Time taken to read 1 MB sequentially 
      RAM -> 0.25 milliseconds
