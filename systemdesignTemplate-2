@@ -35,7 +35,7 @@ Estimate you need to calculate is storage. Typically the interviewer wants to se
 
 ----
 ## Data Model
-
+Identify different components in the system using topdown approach. Identify the components in topdown way.
 ### Entities & Attributes 
 Define the entities and the associated attributes. 
 
