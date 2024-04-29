@@ -42,7 +42,7 @@ Power of 2 and power of 10
 2^50 = 10^15 = 1 PB =  1 quadrillion
 2^60 = 10^18 = 1 EB =  1 quintillion
 
-Howmany bytes should we use for userID variable if accomodate 100 million users in 1 year?
+Howmany bytes should we use for userID variable if we want to accomodate 100 million users in 1 year?
      100 millions = 100* 10^6 = 10^8  it is equivalent to 2^30.
      we need 32 bits are enough to accomodate 100 million users
 
