@@ -2,6 +2,7 @@ High-Level Design (HLD) for Autocomplete Feature using TRIE
 The high-level design (HLD) outlines the overall architecture, components, and flow of the autocomplete feature using the TRIE data structure. It includes the process for constructing the TRIE initially and handling autocomplete queries.
 
 Components
+
 Data Source: A database or a file containing the list of words to be used for autocomplete.
 TRIE Construction Service: A service responsible for initializing and populating the TRIE with words from the data source.
 TRIE Data Structure: The TRIE used to store words and support autocomplete queries.
@@ -16,6 +17,7 @@ TRIE Initialization:
 Load words from the data source.
 Construct the TRIE by inserting each word.
 The TRIE remains in memory for fast query responses.
+
 Handling Autocomplete Queries:
 
 Client sends a query with a prefix to the API Controller.
@@ -59,6 +61,7 @@ API Controller:
   Handles client requests.
   Invokes the Autocomplete Service to process requests.
   Returns results to the client.
+
   Client: The frontend or another system making requests for autocomplete suggestions.
 
 
