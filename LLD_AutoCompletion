@@ -41,3 +41,191 @@ API Controller returns the suggestions to the client.
                   | Data Source         |
                   +---------------------+
 
+
+Detailed Components
+Data Source: Contains the list of words used for autocomplete. This can be a database or a file.
+
+TRIE Construction Service:
+  Reads words from the data source.
+  Initializes the TRIE.
+  Inserts each word into the TRIE.
+  TRIE Data Structure: Efficiently stores words and supports fast prefix-based search for autocomplete.
+
+Autocomplete Service:
+  Provides methods to add new words to the TRIE.
+  Fetches autocomplete suggestions based on a prefix.
+
+API Controller:
+  Handles client requests.
+  Invokes the Autocomplete Service to process requests.
+  Returns results to the client.
+  Client: The frontend or another system making requests for autocomplete suggestions.
+
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+class TrieConstructionService {
+    private Trie trie;
+
+    public TrieConstructionService() {
+        trie = new Trie();
+    }
+
+    public void loadWords(String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String word;
+        while ((word = reader.readLine()) != null) {
+            trie.insert(word.trim());
+        }
+        reader.close();
+    }
+
+    public Trie getTrie() {
+        return trie;
+    }
+}
+
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+
+class TrieNode {
+    Map<Character, TrieNode> children = new HashMap<>();
+    boolean isEndOfWord = false;
+}
+
+class Trie {
+    private TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    // Insert a word into the TRIE
+    public void insert(String word) {
+        TrieNode current = root;
+        for (char ch : word.toCharArray()) {
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                node = new TrieNode();
+                current.children.put(ch, node);
+            }
+            current = node;
+        }
+        current.isEndOfWord = true;
+    }
+
+    // Search for a prefix in the TRIE
+    private TrieNode searchNode(String prefix) {
+        TrieNode current = root;
+        for (char ch : prefix.toCharArray()) {
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                return null;
+            }
+            current = node;
+        }
+        return current;
+    }
+
+    // Get all words with the given prefix
+    public List<String> autocomplete(String prefix) {
+        List<String> results = new ArrayList<>();
+        TrieNode node = searchNode(prefix);
+        if (node != null) {
+            findAllWords(node, results, prefix);
+        }
+        return results;
+    }
+
+    // Helper method to find all words from a given node
+    private void findAllWords(TrieNode node, List<String> results, String prefix) {
+        if (node.isEndOfWord) {
+            results.add(prefix);
+        }
+        for (Map.Entry<Character, TrieNode> entry : node.children.entrySet()) {
+            findAllWords(entry.getValue(), results, prefix + entry.getKey());
+        }
+    }
+}
+
+Autocomplete Service
+
+import java.util.List;
+
+class AutocompleteService {
+    private Trie trie;
+
+    public AutocompleteService(Trie trie) {
+        this.trie = trie;
+    }
+
+    // Add a word to the TRIE
+    public void addWord(String word) {
+        trie.insert(word);
+    }
+
+    // Get autocomplete suggestions for a prefix
+    public List<String> getSuggestions(String prefix) {
+        return trie.autocomplete(prefix);
+    }
+}
+
+
+API Controller
+
+import java.util.List;
+
+class AutocompleteController {
+    private AutocompleteService service;
+
+    public AutocompleteController(AutocompleteService service) {
+        this.service = service;
+    }
+
+    // Endpoint to add a word
+    public void addWord(String word) {
+        service.addWord(word);
+    }
+
+    // Endpoint to get autocomplete suggestions
+    public List<String> getSuggestions(String prefix) {
+        return service.getSuggestions(prefix);
+    }
+}
+
+
+import java.io.IOException;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Initialize TRIE Construction Service and load words
+            TrieConstructionService constructionService = new TrieConstructionService();
+            constructionService.loadWords("words.txt");
+
+            // Get the constructed TRIE
+            Trie trie = constructionService.getTrie();
+
+            // Initialize Autocomplete Service and Controller
+            AutocompleteService autocompleteService = new AutocompleteService(trie);
+            AutocompleteController controller = new AutocompleteController(autocompleteService);
+
+            // Example usage
+            List<String> suggestions = controller.getSuggestions("ca");
+            System.out.println(suggestions); // Output: [cat, car, cart]
+
+            controller.addWord("camera");
+            suggestions = controller.getSuggestions("ca");
+            System.out.println(suggestions); // Output: [cat, car, cart, camera]
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
