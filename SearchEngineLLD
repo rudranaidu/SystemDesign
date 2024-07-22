@@ -1,5 +1,4 @@
-Designing a low-level system for a search engine like Google is a complex task. 
-However, I'll provide a detailed low-level design focusing on the components you mentioned: Search Index, Indexer, Web Crawler, and Search Storage.
+ Main components: Search Index, Indexer, Web Crawler, and Search Storage.
 
 Low-Level Design of a Search Engine
 1. Web Crawler
