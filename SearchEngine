@@ -1,0 +1,360 @@
+Designing a low-level system for a search engine like Google is a complex task. 
+However, I'll provide a detailed low-level design focusing on the components you mentioned: Search Index, Indexer, Web Crawler, and Search Storage.
+
+Low-Level Design of a Search Engine
+1. Web Crawler
+Components:
+
+URL Frontier: A queue to manage URLs to be fetched.
+Fetcher: Component to download content from URLs.
+Parser: Component to extract links and content from downloaded web pages.
+Politeness Manager: Ensures compliance with robots.txt and rate limits.
+Duplicate Detector: Identifies and avoids processing duplicate content.
+Flow:
+
+Seed URLs Initialization: Load initial seed URLs into the URL Frontier.
+Fetch Loop:
+Fetcher retrieves a URL from the URL Frontier.
+Fetcher downloads the web page content.
+Politeness Manager ensures compliance with robots.txt and rate limits.
+Parser extracts links and content from the web page.
+Duplicate Detector checks if the content has been seen before.
+New URLs are added to the URL Frontier.
+Parsed content is sent to the Indexer.
+
+2. Indexer
+Components:
+
+Document Processor: Processes raw content to extract text.
+Tokenizer: Breaks down text into individual terms or tokens.
+Normalizer: Converts tokens to a standard form (lowercasing, stemming).
+Inverted Index Builder: Constructs the inverted index.
+Metadata Generator: Generates metadata for documents.
+Flow:
+
+Document Processing: Receive raw content from the Web Crawler.
+Tokenization: Break down the content into tokens.
+Normalization: Standardize tokens.
+Inverted Indexing: Update the inverted index with tokens and their positions.
+Metadata Generation: Store metadata such as term frequency and document frequency.
+
+3. Search Index
+Components:
+
+Inverted Index: Maps terms to document IDs and term positions.
+Forward Index: Maps document IDs to their content and metadata.
+Ranking Module: Calculates the relevance of documents (e.g., using TF-IDF, PageRank).
+Flow:
+
+Index Creation: Receive tokens and their positions from the Indexer.
+Inverted Index Update: Map terms to document IDs and their positions.
+Forward Index Update: Store document content and metadata.
+Ranking Calculation: Compute relevance scores for documents.
+
+4. Search Storage
+Components:
+
+Document Storage: Stores actual document content or summaries.
+Index Storage: Maintains the inverted and forward indexes.
+Metadata Storage: Keeps metadata for documents, crawling, and indexing.
+Flow:
+
+Document Storage: Save the content of crawled documents.
+Index Storage: Save the inverted index and forward index data.
+Metadata Storage: Store metadata related to documents, crawling status, and indexing status.
+Interactions and Data Flow
+Web Crawler fetches web pages:
+
+Downloads content and extracts links.
+Stores raw content and sends it to the Indexer.
+Indexer processes content:
+
+Tokenizes and normalizes text.
+Updates the inverted index and generates metadata.
+Sends index data to Search Storage.
+Search Storage stores data:
+
+Saves document content and metadata.
+Maintains inverted and forward indexes for efficient search.
+Search Query Processing:
+
+Query Processor: Receives search queries and tokenizes them.
+Search Index: Uses the inverted index to find relevant documents.
+Ranking Module: Ranks documents based on relevance scores.
+Results Formatter: Formats the search results for presentation.
+Data Structures
+URL Frontier: PriorityQueue or FIFO Queue.
+Inverted Index: HashMap<Term, List<Posting>>, where Posting contains document ID and term positions.
+Forward Index: HashMap<DocumentID, DocumentMetadata>.
+Document Storage: Key-Value Store or NoSQL Database.
+Metadata Storage: Relational Database or NoSQL Database for scalability.
+Example Code Snippets
+URL Frontier (PriorityQueue example in Python):
+
+This low-level design should give you a comprehensive overview of how each component functions and interacts within a search engine system.
+
+1) Web Crawler
+URL Frontier:
+
+import java.util.PriorityQueue;
+
+public class URLFrontier {
+    private PriorityQueue<URLPriority> frontier;
+
+    public URLFrontier() {
+        this.frontier = new PriorityQueue<>();
+    }
+
+    public void addUrl(int priority, String url) {
+        this.frontier.add(new URLPriority(priority, url));
+    }
+
+    public String getUrl() {
+        return this.frontier.poll().getUrl();
+    }
+
+    private class URLPriority implements Comparable<URLPriority> {
+        private int priority;
+        private String url;
+
+        public URLPriority(int priority, String url) {
+            this.priority = priority;
+            this.url = url;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        @Override
+        public int compareTo(URLPriority o) {
+            return Integer.compare(this.priority, o.priority);
+        }
+    }
+}
+Fetcher:
+import java.io.IOException;
+import java.net.URL;
+import java.util.Scanner;
+
+public class Fetcher {
+    public String fetchContent(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        Scanner scanner = new Scanner(url.openStream());
+        StringBuilder content = new StringBuilder();
+        while (scanner.hasNext()) {
+            content.append(scanner.nextLine());
+        }
+        scanner.close();
+        return content.toString();
+    }
+}
+Parser:
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Parser {
+    public List<String> extractLinks(String content) {
+        List<String> links = new ArrayList<>();
+        Document doc = Jsoup.parse(content);
+        Elements elements = doc.select("a[href]");
+        for (Element element : elements) {
+            links.add(element.attr("abs:href"));
+        }
+        return links;
+    }
+
+    public String extractText(String content) {
+        Document doc = Jsoup.parse(content);
+        return doc.text();
+    }
+}
+Indexer
+Tokenizer and Normalizer:
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tokenizer {
+    public List<String> tokenize(String text) {
+        String[] tokens = text.split("\\W+");
+        List<String> tokenList = new ArrayList<>();
+        for (String token : tokens) {
+            tokenList.add(token.toLowerCase());
+        }
+        return tokenList;
+    }
+}
+Inverted Index Builder:
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class InvertedIndex {
+    private Map<String, Map<String, List<Integer>>> index;
+
+    public InvertedIndex() {
+        this.index = new HashMap<>();
+    }
+
+    public void addTerm(String term, String docId, int position) {
+        index.computeIfAbsent(term, k -> new HashMap<>()).computeIfAbsent(docId, k -> new ArrayList<>()).add(position);
+    }
+
+    public Map<String, List<Integer>> getPostings(String term) {
+        return index.getOrDefault(term, new HashMap<>());
+    }
+}
+Indexer:
+
+import java.util.List;
+
+public class Indexer {
+    private InvertedIndex invertedIndex;
+    private Tokenizer tokenizer;
+
+    public Indexer(InvertedIndex invertedIndex) {
+        this.invertedIndex = invertedIndex;
+        this.tokenizer = new Tokenizer();
+    }
+
+    public void indexDocument(String docId, String content) {
+        List<String> tokens = tokenizer.tokenize(content);
+        for (int i = 0; i < tokens.size(); i++) {
+            invertedIndex.addTerm(tokens.get(i), docId, i);
+        }
+    }
+}
+Search Storage
+Document Storage:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class DocumentStorage {
+    private Map<String, String> storage;
+
+    public DocumentStorage() {
+        this.storage = new HashMap<>();
+    }
+
+    public void addDocument(String docId, String content) {
+        this.storage.put(docId, content);
+    }
+
+    public String getDocument(String docId) {
+        return this.storage.get(docId);
+    }
+}
+Metadata Storage:
+
+import java.sql.*;
+
+public class MetadataStorage {
+    private Connection conn;
+
+    public MetadataStorage(String dbName) throws SQLException {
+        this.conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
+        this.createTable();
+    }
+
+    private void createTable() throws SQLException {
+        Statement stmt = conn.createStatement();
+        String sql = "CREATE TABLE IF NOT EXISTS Metadata (" +
+                     "doc_id TEXT PRIMARY KEY," +
+                     "url TEXT," +
+                     "title TEXT," +
+                     "author TEXT," +
+                     "pub_date TEXT," +
+                     "content_type TEXT," +
+                     "language TEXT," +
+                     "size INTEGER," +
+                     "checksum TEXT)";
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public void addMetadata(String docId, String url, String title, String author, String pubDate, String contentType, String language, int size, String checksum) throws SQLException {
+        String sql = "INSERT INTO Metadata (doc_id, url, title, author, pub_date, content_type, language, size, checksum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, docId);
+        pstmt.setString(2, url);
+        pstmt.setString(3, title);
+        pstmt.setString(4, author);
+        pstmt.setString(5, pubDate);
+        pstmt.setString(6, contentType);
+        pstmt.setString(7, language);
+        pstmt.setInt(8, size);
+        pstmt.setString(9, checksum);
+        pstmt.executeUpdate();
+        pstmt.close();
+    }
+
+    public ResultSet getMetadata(String docId) throws SQLException {
+        String sql = "SELECT * FROM Metadata WHERE doc_id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, docId);
+        return pstmt.executeQuery();
+    }
+}
+Example Usage
+Main Class:
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            URLFrontier urlFrontier = new URLFrontier();
+            urlFrontier.addUrl(1, "https://example.com");
+
+            Fetcher fetcher = new Fetcher();
+            Parser parser = new Parser();
+            InvertedIndex invertedIndex = new InvertedIndex();
+            Indexer indexer = new Indexer(invertedIndex);
+            DocumentStorage documentStorage = new DocumentStorage();
+            MetadataStorage metadataStorage = new MetadataStorage("metadata.db");
+
+            while (true) {
+                String url = urlFrontier.getUrl();
+                if (url == null) break;
+
+                try {
+                    String content = fetcher.fetchContent(url);
+                    documentStorage.addDocument(url, content);
+                    indexer.indexDocument(url, content);
+
+                    // Example metadata (should be extracted properly)
+                    metadataStorage.addMetadata(url, url, "Title", "Author", "2024-07-22", "text/html", "en", content.length(), "checksum");
+
+                    List<String> links = parser.extractLinks(content);
+                    for (String link : links) {
+                        urlFrontier.addUrl(1, link);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // Example search
+            List<String> postings = invertedIndex.getPostings("example");
+            for (String docId : postings.keySet()) {
+                System.out.println("Found in document: " + docId);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+This Java code provides a basic framework for a search engine with the essential components. You can further expand and optimize it to handle larger scales, more complex data, and advanced features as needed.
