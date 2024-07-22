@@ -357,3 +357,119 @@ public class Main {
     }
 }
 This Java code provides a basic framework for a search engine with the essential components. You can further expand and optimize it to handle larger scales, more complex data, and advanced features as needed.
+
+
++-------------------+           +-------------------+
+|   URLFrontier     |           |     Fetcher       |
++-------------------+           +-------------------+
+| - PriorityQueue   |           |                   |
+|                   |           | + fetchContent()  |
+| + addUrl()        |           |                   |
+| + getUrl()        |           +-------------------+
++-------------------+
+
++-------------------+           +-------------------+
+|     Parser        |           |  InvertedIndex    |
++-------------------+           +-------------------+
+| + extractLinks()  |           | - HashMap         |
+| + extractText()   |           |                   |
+|                   |           | + addTerm()       |
+|                   |           | + getPostings()   |
++-------------------+           +-------------------+
+
++-------------------+           +-------------------+
+|     Indexer       |           | DocumentStorage   |
++-------------------+           +-------------------+
+| - InvertedIndex   |           | - HashMap         |
+| - Tokenizer       |           |                   |
+|                   |           | + addDocument()   |
+| + indexDocument() |           | + getDocument()   |
++-------------------+           +-------------------+
+
++-------------------+           +-------------------+
+| MetadataStorage   |           | DocumentController|
++-------------------+           +-------------------+
+| - Connection      |           | - DocumentService |
+|                   |           |                   |
+| + createTable()   |           | + addDocument()   |
+| + addMetadata()   |           | + getDocument()   |
+| + getMetadata()   |           | + searchDocuments()|
++-------------------+           +-------------------+
+
++-------------------+           +-------------------+
+|   DocumentService |           |   Document        |
++-------------------+           +-------------------+
+| - DocumentRepo    |           | - docId           |
+| - InvertedIndexRepo|          | - content         |
+| - Tokenizer       |           |                   |
+|                   |           +-------------------+
+| + addDocument()   |
+| + getDocument()   |
+| + searchDocuments()|
++-------------------+
+
++-------------------+           +-------------------+
+| DocumentRepository|           | InvertedIndexEntry|
++-------------------+           +-------------------+
+|                   |           | - term            |
+|                   |           | - docId           |
+|                   |           | - position        |
++-------------------+           +-------------------+
+
++-------------------+           +-------------------+
+| InvertedIndexRepo |           |InvertedIndexEntryId|
++-------------------+           +-------------------+
+|                   |           | - term            |
+|                   |           | - docId           |
+|                   |           | - position        |
++-------------------+           +-------------------+
+
++-------------------+           
+|    Tokenizer      |
++-------------------+
+|                   |
+| + tokenize()      |
++-------------------+
+
+Database Design
+Let's define the database schema for the search engine. We will use a relational database (e.g., MySQL) for this example.
+
+Tables
+
+
+Documents
+Stores the actual content or a summary of documents.
+
+CREATE TABLE Documents (
+    doc_id VARCHAR(255) PRIMARY KEY,
+    content TEXT
+);
+
+
+CREATE TABLE Metadata (
+    doc_id VARCHAR(255) PRIMARY KEY,
+    url TEXT,
+    title TEXT,
+    author TEXT,
+    pub_date DATE,
+    content_type VARCHAR(50),
+    language VARCHAR(10),
+    size INT,
+    checksum VARCHAR(255),
+    FOREIGN KEY (doc_id) REFERENCES Documents(doc_id)
+);
+
+InvertedIndex
+ Stores the inverted index data
+
+CREATE TABLE InvertedIndex (
+    term VARCHAR(255),
+    doc_id VARCHAR(255),
+    position INT,
+    PRIMARY KEY (term, doc_id, position),
+    FOREIGN KEY (doc_id) REFERENCES Documents(doc_id)
+);
+
+REST APIs
+We'll use a Spring Boot application to define REST APIs for the search engine.
+
