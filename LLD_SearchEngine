@@ -9,8 +9,8 @@ Fetcher: Component to download content from URLs.
 Parser: Component to extract links and content from downloaded web pages.
 Politeness Manager: Ensures compliance with robots.txt and rate limits.
 Duplicate Detector: Identifies and avoids processing duplicate content.
-Flow:
 
+Flow:
 Seed URLs Initialization: Load initial seed URLs into the URL Frontier.
 Fetch Loop:
 Fetcher retrieves a URL from the URL Frontier.
@@ -29,6 +29,7 @@ Tokenizer: Breaks down text into individual terms or tokens.
 Normalizer: Converts tokens to a standard form (lowercasing, stemming).
 Inverted Index Builder: Constructs the inverted index.
 Metadata Generator: Generates metadata for documents.
+
 Flow:
 
 Document Processing: Receive raw content from the Web Crawler.
@@ -43,6 +44,7 @@ Components:
 Inverted Index: Maps terms to document IDs and term positions.
 Forward Index: Maps document IDs to their content and metadata.
 Ranking Module: Calculates the relevance of documents (e.g., using TF-IDF, PageRank).
+
 Flow:
 
 Index Creation: Receive tokens and their positions from the Indexer.
@@ -81,12 +83,14 @@ Query Processor: Receives search queries and tokenizes them.
 Search Index: Uses the inverted index to find relevant documents.
 Ranking Module: Ranks documents based on relevance scores.
 Results Formatter: Formats the search results for presentation.
+
 Data Structures
 URL Frontier: PriorityQueue or FIFO Queue.
 Inverted Index: HashMap<Term, List<Posting>>, where Posting contains document ID and term positions.
 Forward Index: HashMap<DocumentID, DocumentMetadata>.
 Document Storage: Key-Value Store or NoSQL Database.
 Metadata Storage: Relational Database or NoSQL Database for scalability.
+
 Example Code Snippets
 URL Frontier (PriorityQueue example in Python):
 
