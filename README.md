@@ -43,3 +43,6 @@ Identify the Need for Scale:
   Draw a distributed architecture per tier, with strategies like round-robin for stateless app server tiers and shard partitioning for storage tiers.
   Propose algorithms for shard placement, explain API functioning within shard partitions, and suggest replication and consistency/availability strategies.
   Utilize user caches based on problem-specific needs.
+
+we can also read following template for system design problems
+  https://www.kcoleman.me/2020/06/14/system-design-interview-format.html
