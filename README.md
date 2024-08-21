@@ -46,3 +46,6 @@ Identify the Need for Scale:
 
 we can also read following template for system design problems
   https://www.kcoleman.me/2020/06/14/system-design-interview-format.html
+
+GitHub Repos
+https://github.com/systemdesign42/system-design?tab=readme-ov-file
