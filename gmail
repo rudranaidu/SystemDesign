@@ -49,8 +49,8 @@ ProfileService : It handles User profile, create/update/delete operations
     Database: For profile service -> it stores all userinfo
               For Auth service ->  it store name, encrypted password, onetime code, usersecret code which is used to authenticate the user
               For Message servcie -> it store message templates
-    Distributed cache:  User token is stored in distributed cache. Instead of making a call to Authservice everytime , we can make a call to Cache
-                        which is more efficient.
+    Distributed cache:  User token is stored in distributed cache. Instead of making a call to Authservice everytime ,
+    we can make a call to Cache  which is more efficient.
     
    InMemory cache vs Distributed cache:
             we need to write additional code for inmemory cache. we also need to allocate additional memory.
@@ -66,8 +66,8 @@ SearchService: It maps keywords in emails to their locations. It creates inverte
 
 PreferenceService: It pulls emails from MessageQueue and assigns preferences to emails
 
-SpamDetector Service: It checks the subject and contents of the email and to determine the spam. It checks the email in regular intervals or
-                      whenever there is a new email.
+SpamDetector Service: It checks the subject and contents of the email and to determine the spam.
+                      It checks the email in regular intervals or whenever there is a new email.
 
 VirusDetectorService: It checks the contents and attachements of email for any virus.
 
