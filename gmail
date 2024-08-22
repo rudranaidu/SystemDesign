@@ -39,7 +39,7 @@ ServiceRegistry:
 AuthService: 
              We need authservice to authenticate the user with username and password.
              We also need profile service to register new user.
-             It also updates the cache whenever the userinforation is updated.
+             It also updates the cache whenever the userinformation is updated.
              It also checks whether the user is verified or not. using SMS code
 
 MessageService: to Send OTP message through SMS or Email. It also maintains SMS templates
@@ -168,28 +168,3 @@ SMSTemplate
 ServiceManager
      service  String
      endpoints String
-
-
-
-
-
- 
-
-
-   
-
-
-
-
-
-
-
-
-              
-              
-        
-         
-
-
-
-    
