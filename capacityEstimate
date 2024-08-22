@@ -1,6 +1,6 @@
 
 Fourmulas for capacity estimate
-Throughput (QPS=> Query per second): No.Of Daily activeusers * No of operations daily/10^5
+Throughput (QPS=> Query per second): No.Of Daily activeusers * No of operations daily by each User / 10^5
                   
 Bandwidth: Find each operation size
            Find Read : Write ratio 
