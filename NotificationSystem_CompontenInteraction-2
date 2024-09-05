@@ -1,0 +1,43 @@
+Step-by-Step Flow:
+1. Message Creation and Submission (NotificationProducer)
+Client/System Interaction: A client (e.g., an e-commerce platform or backend service) triggers a notification, such as an order confirmation, password reset, or promotional message. This happens when an event occurs, like a successful order or an OTP request.
+API Call: The client system sends an API request to the NotificationProducer. This request contains necessary details such as:
+User details (email, phone, device token for push notifications)
+Message type (Email, SMS, Push)
+Priority level (e.g., high for OTP, low for marketing)
+Message content (e.g., "Your order has been shipped.")
+
+2. Message Queueing (Message Broker - Kafka)
+Message Enqueue: The NotificationProducer validates the incoming request and produces a message to Kafka, a message queue. The message is sent to a specific Kafka topic based on its notification type or priority.
+For example, email notifications might go to the "EmailTopic," SMS notifications to "SMSTopic," and push notifications to "PushTopic."
+Kafka partitions the messages across different brokers based on the partitioning strategy (e.g., user ID).
+Asynchronous Handling: Once the message is pushed to Kafka, the producer returns a success response to the client, and the message processing is done asynchronously.
+
+3. Message Processing (NotificationHandler)
+Consumer Setup: The NotificationHandler component is a consumer that listens to Kafka topics. There may be multiple handlers listening to different topics, such as one for email, one for SMS, and one for push notifications.
+Kafka uses consumer groups to allow multiple handlers to process messages in parallel, improving scalability.
+Message Handling: Once a message is consumed from Kafka:
+The NotificationHandler checks user preferences to see if the user has opted in for the notification type (e.g., push notifications or SMS).
+The message is enriched or transformed if needed, such as adding user-specific personalization or translating the message to the user’s preferred language.
+Based on priority, high-priority messages are processed immediately, while low-priority messages may be delayed or rate-limited.
+
+4. Third-Party Message Sender Integration
+Email Gateway (e.g., SendGrid): If the message is an email, the NotificationHandler interacts with an external email provider like SendGrid, sends the email payload, and waits for confirmation.
+SMS Gateway (e.g., Twilio): If it’s an SMS, the system uses an SMS provider like Twilio, sending the user’s phone number and message details.
+Push Notification Provider (e.g., Firebase Cloud Messaging): For push notifications, the system interacts with FCM or Apple Push Notification Service (APNS), sending the device token and notification payload.
+Error Handling: If the third-party service fails (e.g., the SMS gateway is down), the NotificationHandler retries based on a configured retry policy (e.g., exponential backoff) or sends the message to a Dead Letter Queue (DLQ) for manual investigation.
+
+5. Message Delivery to User
+The external service (e.g., Twilio, SendGrid, or FCM) delivers the message to the user’s device:
+Email: The email is delivered to the user’s inbox.
+SMS: The SMS is sent to the user’s phone.
+Push Notification: The push notification appears on the user’s mobile device.
+
+6. Delivery Confirmation and Status Updates
+The third-party services send delivery status updates (e.g., delivered, failed, bounced) back to the NotificationHandler.
+The NotificationHandler logs the status of the message delivery into a Notification Database (optional) for future auditing and analytics.
+Deduplication: The system ensures no duplicate messages are sent by keeping track of previously sent notifications for a given event and user, thus avoiding redundancy.
+
+7. Monitoring and Reporting
+Real-Time Monitoring: Tools like Prometheus or Grafana monitor the entire notification system's health, tracking message queue size, third-party service availability, delivery success rates, etc.
+Alerts: If there are significant delays in message delivery, high failure rates, or service outages, alerting systems notify engineers, ensuring timely resolution.
