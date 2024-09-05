@@ -1,0 +1,18 @@
+Handling failures or outages of third-party services in an eCommerce application requires a resilient and fault-tolerant strategy. 
+
+Here's a breakdown:
+
+Graceful Degradation: Design the system to continue operating even if the third-party service is down, by providing limited functionality or fallback options.
+For example, if a payment gateway is down, allow users to add items to their cart and retry the payment later.
+
+Timeouts and Retries: Implement proper timeouts to avoid waiting indefinitely for a third-party service to respond. Use retry mechanisms with 
+exponential backoff to avoid overwhelming the service if it's temporarily slow or unavailable.
+
+Circuit Breaker Pattern: Use a circuit breaker to detect repeated failures and automatically stop calling the third-party service,
+preventing cascading failures across your system. The circuit breaker can also periodically check if the service has recovered and resume calls when it’s back up.
+
+Fallback Mechanisms: Provide alternative paths or backup services if a third-party service is down. For example, use a secondary payment 
+provider or provide users with an option to save their orders and process payments later.
+
+Monitoring and Alerts: Set up monitoring for third-party service integrations, tracking response times and errors. 
+This way, you can be alerted in real time about outages and take proactive measures, such as notifying users or switching to backup services
