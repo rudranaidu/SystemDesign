@@ -1,0 +1,9 @@
+Would you design a separate mobile API or use the same API for both web and mobile clients?
+
+To decide between a single or separate API for web and mobile clients, you can use a single API for simplicity, maintainability, 
+and consistency across platforms, but it may result in over-fetching or under-fetching of data for mobile.
+A separate mobile API allows for optimizing performance, reducing data transfer, 
+and supporting mobile-specific features but adds complexity and duplication.
+A hybrid approach with an API gateway provides the best of both worlds by optimizing the same core API for mobile use. T
+his reduces round trips, enables compressed responses, and improves mobile performance while maintaining consistency.
+Ultimately, the choice depends on the application's specific needs and user experience goals
