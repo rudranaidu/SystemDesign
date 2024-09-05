@@ -13,8 +13,8 @@ This reservation has an expiration (e.g., 10-15 minutes), giving users time to c
 If the user doesn’t finish, the reserved stock is released back into the system. 
 This reduces the chances of overselling but requires careful balance to avoid blocking stock unnecessarily.
 
-Atomic Transactions: Ensure that the stock update and order placement occur in a single atomic transaction. T
-his prevents any race conditions where multiple users may reduce the stock simultaneously, leading to negative inventory counts.
+Atomic Transactions: Ensure that the stock update and order placement occur in a single atomic transaction.
+This prevents any race conditions where multiple users may reduce the stock simultaneously, leading to negative inventory counts.
 
 Eventual Consistency with Queuing: In high-traffic environments, use a queue system where order requests are processed sequentially. 
 This ensures that orders are processed in the order they are received, reducing the chances of overselling in peak times.
