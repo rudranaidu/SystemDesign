@@ -1,0 +1,23 @@
+What would happen if a product runs out of stock while multiple users are placing orders?
+
+When a product runs out of stock while multiple users are placing orders, handling this scenario efficiently is 
+crucial to maintain a smooth user experience and avoid overselling. Here's how it can be managed:
+
+Optimistic Locking or Versioning: When a user places an order, the system checks the stock availability. 
+With optimistic locking, the stock count is checked right before the transaction is finalized. 
+If two users try to buy the last unit simultaneously, only the first transaction that gets processed succeeds, 
+while the second one fails. The second user is then informed that the product is out of stock.
+
+Inventory Reservation: Implement a system where stock is temporarily reserved when users add products to their cart.
+This reservation has an expiration (e.g., 10-15 minutes), giving users time to complete the purchase. 
+If the user doesn’t finish, the reserved stock is released back into the system. 
+This reduces the chances of overselling but requires careful balance to avoid blocking stock unnecessarily.
+
+Atomic Transactions: Ensure that the stock update and order placement occur in a single atomic transaction. T
+his prevents any race conditions where multiple users may reduce the stock simultaneously, leading to negative inventory counts.
+
+Eventual Consistency with Queuing: In high-traffic environments, use a queue system where order requests are processed sequentially. 
+This ensures that orders are processed in the order they are received, reducing the chances of overselling in peak times.
+
+Real-time Stock Updates: Continuously update stock availability in real-time, both on the backend and user-facing front end. 
+This ensures that users are informed immediately if a product is out of stock when they try to check out, reducing frustration.
