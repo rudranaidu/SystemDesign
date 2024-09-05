@@ -18,3 +18,11 @@ Twilio, or AWS SNS to send transactional emails or SMS messages when an order st
 Notification Management System: Build a notification management system that tracks user preferences (e.g., opting in or out of notifications) 
 and delivers the appropriate type of notification (push, email, or SMS). This system should be decoupled from the business logic, allowing flexibility 
 in adding new notification channels.
+
+
+
+Ensuring Timely Delivery:
+
+Retries and Failover Mechanisms: Implement retries for failed notifications (e.g., if a push notification or SMS fails, retry after a few minutes). Use failover channels (e.g., if push fails, send SMS or email).
+Message Queue: Use a message queue (e.g., Kafka, RabbitMQ) to manage sending notifications efficiently and asynchronously, ensuring they are processed without delay.
+Monitoring and Alerts: Set up monitoring and alerts to detect delays or failures in message delivery, ensuring you can take immediate action to resolve any issues.
