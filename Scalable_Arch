@@ -1,0 +1,20 @@
+How would you implement real-time notifications for order updates (e.g., "Your order has been shipped")?
+
+To implement real-time notifications for order updates (e.g., "Your order has been shipped") in an eCommerce application, you can use the following approach:
+
+Message Queue and Event-Driven Architecture: Use a message queue (e.g., Kafka, RabbitMQ) to publish events like "Order Shipped" or "Order Delivered."
+When an event occurs (such as an order status change), it triggers a message that can be processed asynchronously, ensuring the system remains scalable and responsive.
+
+WebSockets or Server-Sent Events (SSE): For real-time notifications, use WebSockets or SSE to maintain a persistent connection between the server and client.
+This allows the server to push updates (such as order status changes) to the client in real time without requiring the client to poll the server repeatedly.
+
+Push Notifications for Mobile Apps: For mobile apps, integrate push notification services like Firebase Cloud Messaging (FCM) 
+for Android and Apple Push Notification Service (APNS) for iOS. When the order status changes, your backend system can send a push notification to the user's device, 
+informing them of the update in real-time.
+
+Email and SMS Notifications: Use email or SMS for order updates as fallback methods or as additional communication channels. Integrate with services like SendGrid, 
+Twilio, or AWS SNS to send transactional emails or SMS messages when an order status changes.
+
+Notification Management System: Build a notification management system that tracks user preferences (e.g., opting in or out of notifications) 
+and delivers the appropriate type of notification (push, email, or SMS). This system should be decoupled from the business logic, allowing flexibility 
+in adding new notification channels.
