@@ -1,0 +1,53 @@
+High-level overview covers many essential use cases for a Notification System, but a few additional considerations could be included to enhance the design. Let's break it down and review the functional and non-functional requirements.
+
+Functional Requirements:
+  Email Messages: ✅
+  
+  Supports email notifications for different use cases like order updates, marketing, etc.
+  SMS Messages: ✅
+  
+  Ensures timely delivery for urgent notifications like OTPs, account alerts.
+  Push Notifications: ✅
+  
+  Important for mobile users, delivering app-specific updates.
+  Users Can OPT-IN and OPT-OUT from Notifications: ✅
+  
+  This is critical for compliance with privacy laws (e.g., GDPR, CAN-SPAM), and should include user preference management.
+  Retry Mechanism for Offline Users: ✅
+  
+  Important for ensuring delivery to users who may not be reachable initially. Consider implementing exponential backoff in retries to avoid overwhelming the system or recipients.
+  No Duplicate Messages: ✅
+  
+  Ensures a clean and user-friendly experience by preventing multiple notifications for the same event.
+  Message Priority Delivery: ✅
+  
+  Useful for separating time-sensitive messages (e.g., OTPs) from lower-priority ones (e.g., promotions). You might want to use different queues or priority-based processing for this.
+  Rate Limiting Capabilities: ✅
+  
+  Helps prevent overloading users with notifications and ensures compliance with third-party service limitations (e.g., Twilio, SendGrid).
+
+Additional Functional Requirements to Consider:
+Message Scheduling:
+
+You may want to add a scheduling feature for non-urgent notifications (e.g., sending promotional emails at a particular time).
+Multi-Language Support:
+
+If the system serves users in different regions, consider adding the ability to send notifications in different languages.
+Audit and Reporting:
+
+Track delivery success, failures, and user interactions with notifications (e.g., email opens, SMS clicks). This is useful for analytics and debugging.
+
+
+Non-Functional Requirements:
+Scalability for Millions of Messages: ✅
+
+Ensure the system can horizontally scale, especially the message producers and Kafka brokers, to handle peak loads.
+Availability: ✅
+
+Consider deploying your system across multiple regions or availability zones to avoid single points of failure.
+Low Latency: ✅
+
+Ensure that priority notifications like OTPs are delivered within seconds. For non-urgent notifications, slightly higher latencies are acceptable.
+Fault Tolerance: ✅
+
+Ensure the system can handle failures in individual components (e.g., Kafka, third-party providers) without affecting the overall functionality. This could include retries, circuit breakers, and fallback mechanisms.
