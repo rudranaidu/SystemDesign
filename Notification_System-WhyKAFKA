@@ -1,5 +1,11 @@
 I chose Kafka as the messaging layer for the Notification System due to its strengths in handling high-throughput, fault-tolerant, and scalable messaging. Here are some of the key advantages of using Kafka in this system:
 
+KAFKA Broker : node in Kafka cluster is called as broker
+Topic : it is a categorization to publish and consume messages
+Consumer groups : set of consumers for parellel processing from same Topic.
+Partition: Divide the topic into number of Partitions for scalbility purpose.
+
+
 1. High Throughput and Scalability:
 Kafka is designed to handle millions of messages per second, making it a great fit for a system that needs to send large volumes of notifications, such as email, SMS, or push messages.
 It can scale horizontally by adding more partitions to topics and distributing the load across multiple brokers, ensuring that the notification system can handle growth and sudden spikes in traffic.
