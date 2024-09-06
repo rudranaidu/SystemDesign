@@ -5,6 +5,10 @@ Topic : it is a categorization to publish and consume messages
 Consumer groups : set of consumers for parellel processing from same Topic.
 Partition: Divide the topic into number of Partitions for scalbility purpose.
 
+MessageQs are differnt from KAKFA topics: In MessageQs like RabbitMA, messages are deleted once it is consumed.
+in KAFKA topic it is not the case. a message can be consumed by single consumer in MessageQs but in KAFKA topics , a message can be
+consumed by different consumer groups . But within the consumer groups only one consumer can consume the message.
+
 
 1. High Throughput and Scalability:
 Kafka is designed to handle millions of messages per second, making it a great fit for a system that needs to send large volumes of notifications, such as email, SMS, or push messages.
