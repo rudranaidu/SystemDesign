@@ -1,0 +1,105 @@
+High-Level Design Questions:
+What is the core objective of your recommendation engine?
+  Are you focusing on improving user engagement, retention, or conversions?
+
+Do you have any specific KPIs or metrics in mind to measure the performance?
+What types of recommendations will you prioritize?
+For example, will it be based on trending content, personalized suggestions, or a combination of both?
+
+
+User Behavior and Data Collection:
+How do you plan to capture user behavior in your system?
+Will you collect explicit feedback like likes, ratings, and comments, or implicit feedback like watch history, time spent on videos, clicks, etc.?
+What challenges do you anticipate in collecting and processing implicit feedback from users?
+What kind of data will be stored to represent user behavior?
+
+Will you store all actions taken by a user or only specific ones that contribute to recommendation accuracy?
+
+How will you handle data volume as user behavior data can quickly grow in size?
+
+Content-Based and Collaborative Filtering:
+You mentioned two primary models: Content-Based Filtering and Collaborative Filtering. When would you prefer one over the other?
+In which scenarios will content-based filtering be more effective than collaborative filtering?
+How do you plan to handle the cold start problem when collaborative filtering lacks sufficient user data?
+How will you extract and represent the features of the content (e.g., movies, videos)?
+
+Will you use metadata like genre, actors, or use techniques like Natural Language Processing (NLP) on descriptions and titles to extract meaningful features?
+How will these features be stored and retrieved efficiently?
+Personalization & Profile Building:
+How would you build user profiles to offer personalized recommendations?
+
+What data will go into the Profile Builder? How frequently will these profiles be updated (e.g., after every action, daily batch update)?
+How will you combine both explicit and implicit feedback to build a comprehensive user profile?
+How do you envision scaling the profile building process for millions of users?
+
+Will this be done in real time or using batch processing?
+What sort of database would you choose to store the user profiles? (e.g., Cassandra, Redis, MongoDB)
+Candidate Generation, Filtering, and Ranking:
+What is your plan for generating candidate recommendations?
+
+How will you retrieve potential items for recommendation from the Similar Items database and user profile?
+Will you use any approximate nearest neighbor search algorithms to improve scalability in candidate generation?
+How do you rank the candidates to prioritize the best recommendations?
+
+Are you considering building a ranking model using machine learning?
+What features will go into your ranking model? (e.g., user-item interactions, item popularity, time spent watching)
+How do you plan to filter irrelevant recommendations?
+
+Will you use some business logic to filter out irrelevant recommendations (e.g., content already watched by the user, low-rated content)?
+How will you handle freshness and ensure content recommendations are not stale?
+Cold Start Problem & Data Sparsity:
+How do you plan to handle the cold start problem for new users or items?
+
+What methods will you use when you have little to no historical data for a user or content?
+How would you gradually improve recommendations for a new user?
+What strategy will you use to mitigate data sparsity, especially in collaborative filtering?
+
+Are there any techniques like matrix factorization or embedding that you plan to use?
+System Design and Scalability:
+How do you ensure the system scales as the user base and content library grow?
+
+How will you handle millions of users and millions of items efficiently?
+What databases or storage solutions are you considering, and how will they scale with the traffic and data growth?
+How do you ensure real-time recommendation with low latency?
+
+Are you planning to precompute recommendations and store them, or will you compute them on the fly?
+What caching strategy will you use to reduce response times?
+Feedback Loop:
+How will you integrate a feedback loop into the system?
+
+How will the system use real-time user behavior (e.g., clicks, watch time) to improve future recommendations?
+Will you give more weight to recent behavior than older behavior?
+How will you incorporate A/B testing to evaluate and improve recommendation algorithms?
+
+What metrics will you use to determine which recommendation strategy is more effective?
+How will you handle user segmentation to run these tests without affecting the overall experience?
+Handling Bias and Diversity:
+How do you prevent the recommendation engine from showing only a narrow range of content?
+
+How do you ensure that the recommendations include a diverse range of content and avoid reinforcing biases in user preferences?
+How will you handle situations where users are stuck in a "filter bubble"?
+
+How will you diversify recommendations to prevent users from only seeing similar content repeatedly?
+Architecture and Tech Stack:
+Walk me through the tech stack you’d use for implementing this recommendation engine.
+
+How would you handle data ingestion, storage, processing, and serving recommendations?
+What technologies will you use for distributed processing (e.g., Apache Kafka for message queues, Spark for distributed computation)?
+How do you ensure fault tolerance and high availability of your recommendation system?
+
+What happens if one of your components (e.g., recommendation engine, database) fails?
+How would you ensure a distributed, fault-tolerant architecture for high availability?
+                                                           
+Machine Learning and Algorithms:
+What machine learning algorithms do you plan to use for collaborative filtering?
+Are you considering matrix factorization (e.g., SVD, ALS) or deep learning approaches (e.g., neural collaborative filtering)?
+How will you ensure that your machine learning models are continuously improving?
+Will you retrain models on a fixed schedule, or do you plan to use online learning where models adapt in real-time?
+How would you collect training data and balance it for better accuracy?
+Miscellaneous Considerations:
+How would you handle GDPR and user privacy regulations?
+
+How would you anonymize and secure user data while still generating personalized recommendations?
+What’s your fallback strategy if the recommendation engine doesn’t have enough data to generate recommendations?
+
+Will you rely on default recommendations (e.g., popular items) or a heuristic approach?
