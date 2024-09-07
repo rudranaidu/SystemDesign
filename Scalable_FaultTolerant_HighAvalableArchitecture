@@ -36,9 +36,11 @@ the cache can continue serving recommendations.
 Cache Replication: Ensure the caching layer is also replicated to avoid single points of failure.
 
 4. Message Queues for Asynchronous Processing:
-Message Queue for Resilience: Use a distributed message queue (e.g., Apache Kafka, RabbitMQ) to handle asynchronous tasks like log ingestion, profile building, or candidate generation. If any downstream service fails or is overloaded, messages can be buffered in the queue and processed once the service recovers.
-Retry Mechanism: Incorporate retry logic for failed message processing. If a service fails to process a message, the system should retry after a delay, ensuring that no data is lost.
 
+Message Queue for Resilience: Use a distributed message queue (e.g., Apache Kafka, RabbitMQ) to handle asynchronous tasks like 
+log ingestion, profile building, or candidate generation. If any downstream service fails or is overloaded, messages can be buffered in the queue and processed once the service recovers.
+Retry Mechanism: Incorporate retry logic for failed message processing. If a service fails to process a message, 
+the system should retry after a delay, ensuring that no data is lost.
 
 5. Health Checks and Auto-Scaling:
 Health Checks: Use regular health checks (e.g., HTTP heartbeat checks) to monitor the status of each service. 
