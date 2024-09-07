@@ -31,7 +31,12 @@ Recommendation Types:
 
  Feedback:  Recommendation systems thrive on feedback. They are two types of feedback. 1) ExplicitFeedback 2) ImplicitFeedback
             Explicit feedback is through giving rating, likes, shares, commenting, most of the users don't do all these things.
-   
+            Implicit feedback is the ratings that are derived by the system through other actions of the user, including purchases, searches, time spent on the content, clicks, etc.
+            If a user purchases a certain content, for example, it implies a high rating. The system gives the item a high rating for that user in the utility matrix.
+
+            Once the system fills the utility with the “known” ratings, there are still empty spaces left. 
+            The next challenge is to extrapolate the unknown ratings from the known ratings that our system has already filled into the matrix. 
+            The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering or a hybrid approach that uses a combination of the two techniques.
         
 
 
