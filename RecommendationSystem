@@ -1,1 +1,42 @@
+Design Recommendation system similar to Youtube, Netflix, spotify
 
+Concepts: 
+      Save Userbehaviour in the system and extract some patterns out of it
+
+Recommendation Types:
+       If you are designing a Recommendation engine for Netflix or youtube, Simple way to recommend most popular content(Videos), most liked viewed videos, most liked videos
+       most commented videos.
+       Anoter approach is if a user watches a some video , just recommend him similar videos, If he watches some comic movie, recommend him other comic movies.
+       The above two approaches are simple and it doesn't provide Personalised user experience.
+
+       Personalised user experience:
+        There are two types of  popular machine learning models exists.
+
+        Content based filtering: Extract all the features of Product . This recommendation is based on Product. For example if we are building a recommendation engine
+        for movies , then we need to save the features like MovieType, ActorsinMovie, ratings of movie.
+        Movie1 has features like 1, 2, 3 and Movie2 has features 2,3,4 then user1 watchd movie1 then we can recomment Movie4 to user1 and Movie1 to user2.
+        This approach is good but it also doesn't consider the personalized user experience.
+        In simple terms we can say products with common characteristic are suggested.
+
+       Collaborative filtering:
+          Instead of depending on characteristics of the product, we can suggest the recommendation based on users with similar taste.
+          Lets say user1 wacthes movie1, movie2 and user2 watches movie2 and movie3 then we can suggest movie3 to user1 and movie1 to user2.
+         Create a matrix with movies and users watching history.
+          If the userbase is huge then building this matrix is difficult. it has performance cost. One way to counter this problem is group similar users together.
+          It fails at making accurate recommendations during the beginning of the application when the user base is small. This is called the cold start problem. 
+          If the application has just started, you’ll have either no or very few actions from the users to work on. 
+          The small amount of information from the few users who are using the application is not enough to make reliable recommendations to the users.
+          One way to solve this problem is to start your recommendation system on content-based filtering. Once you have more users and the amount of information 
+          regarding their actions and preferences is enough to feed to your collaborative filtering model, you can switch to this filtering approach
+
+          
+        
+
+
+   
+
+
+
+
+
+       
