@@ -36,7 +36,8 @@ Recommendation Types:
 
             Once the system fills the utility with the “known” ratings, there are still empty spaces left. 
             The next challenge is to extrapolate the unknown ratings from the known ratings that our system has already filled into the matrix. 
-            The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering or a hybrid approach that uses a combination of the two techniques.
+            The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering or a hybrid approach that uses a combination of the two 
+            techniques.
         
 
 
