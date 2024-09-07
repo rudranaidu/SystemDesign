@@ -1,0 +1,23 @@
+Functional Requirements:
+
+User Features:
+User Registration and Login (OAuth, Email-based, Social Sign-in)
+Profile Creation and Management: Users can create profiles, add bio, profile pictures, etc.
+Follow/Unfollow: Users can follow/unfollow other users.
+Post Creation: Users can post text, images, and videos.
+Feed Generation: Users should see a timeline of posts from accounts they follow.
+Like/Comment/Share: Interaction with posts.
+Search: Search for users, posts, hashtags.
+Notifications: Real-time notifications for likes, follows, and comments.
+Messaging: Direct messaging between users.
+Trends and Hashtags: Trending topics and hashtags feature.
+Analytics: User insights such as post reach, interactions, etc.
+
+Non-Functional Requirements:
+
+Scalability: Ability to handle millions of users, posts, and interactions.
+Availability: Ensure minimal downtime and high availability.
+Consistency: Ensure real-time updates across the system.
+Low Latency: Deliver a seamless user experience.
+Security: User data protection, encryption, and prevention of spam or bot attacks.
+Resiliency: System should handle failures and auto-recover.
