@@ -35,6 +35,17 @@
     Security & Encryption:
       End-to-end encryption for messages.
     Secure authentication (OTP-based registration).
+
+   Capacity Estimation:
+        Active Users: Assume 500 million daily active users (DAU).
+        Messages per User per Day: Assume 50 messages on average.
+        Peak Traffic: Assume a 10% peak traffic at a time (i.e., 50 million users).
+        Messages per Second (MPS): 500M users × 50 messages/day = 25 billion messages/day = ~300,000 MPS at peak.
+        For media:
+        
+        Media Size: Assume the average media size is 200 KB.
+        Daily Media Transfer: Assume 30% of messages contain media.
+        Storage Need: 25 billion messages × 30% × 200 KB = 1.5 petabytes/da
     
 Sequence of interactions:
 
