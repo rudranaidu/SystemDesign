@@ -38,13 +38,20 @@ Recommendation Types:
             The next challenge is to extrapolate the unknown ratings from the known ratings that our system has already filled into the matrix. 
             The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering or a hybrid approach that uses a combination of the two 
             techniques.
-        
+            Following are main components in Recommendation system
 
+               ProfileBuilder -> Use Explicit Feedback and ImplicitFeedback and build the userprofile and save it in DB
+               Then CandidateGeneration --> CandidateRanking --> Candidate Filtering --> List of Recommendations
+               While generating the candidate , You need the inputs from Similar Items (other user interests)
 
-   
+            You can use a distributed NoSQL datastore such as Cassandra, or MongoDb to store this data. 
+            Often, this data is normalized using techniques like mean centering to make it easier to compare data between users.
 
-
-
-
-
-       
+           Users give feedback explicitly and implicitly. Both the types of feedback are consumed by the Profile Builder to create a customized database for each user.
+           This database holds the individual interests of the users in the form of explicit ratings they have given to movies or what they have liked implicitly by purchasing 
+           or watching. You can use a distributed NoSQL datastore such as Cassandra, or MongoDb to store this data. Often, this data is normalized using techniques 
+           like mean centering to make it easier to compare data between users.
+           Next, the Candidate Generation service compares the Individual Interests database with the Similar Items database to pick product 
+          candidates that could be of interest to the user. The Similar Items database in the diagram above can be the database of items used by similar users 
+          (in the case of collaborative filtering) or a database of items with similar features (in the case of content-based filtering)
+  
