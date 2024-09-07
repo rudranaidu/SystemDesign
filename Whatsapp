@@ -1,6 +1,5 @@
-Requirements:
-    
     Functional Requirements:
+
     User Management:
       Users can register with a phone number.
       Manage user profile, status, and contacts.
