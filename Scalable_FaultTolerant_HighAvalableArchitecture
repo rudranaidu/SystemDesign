@@ -38,13 +38,16 @@ Cache Replication: Ensure the caching layer is also replicated to avoid single p
 4. Message Queues for Asynchronous Processing:
 
 Message Queue for Resilience: Use a distributed message queue (e.g., Apache Kafka, RabbitMQ) to handle asynchronous tasks like 
-log ingestion, profile building, or candidate generation. If any downstream service fails or is overloaded, messages can be buffered in the queue and processed once the service recovers.
+log ingestion, profile building, or candidate generation. If any downstream service fails or is overloaded, messages can be buffered 
+in the queue and processed once the service recovers.
+
 Retry Mechanism: Incorporate retry logic for failed message processing. If a service fails to process a message, 
 the system should retry after a delay, ensuring that no data is lost.
 
 5. Health Checks and Auto-Scaling:
 Health Checks: Use regular health checks (e.g., HTTP heartbeat checks) to monitor the status of each service. 
 Load balancers or orchestration systems (like Kubernetes) can remove unhealthy instances and route traffic to healthy ones.
+
 Auto-Scaling: Implement auto-scaling (e.g., AWS Auto Scaling, Kubernetes Horizontal Pod Autoscaler) to dynamically increase or 
 decrease the number of instances of each service based on traffic load. This ensures that the system can handle traffic spikes
 without becoming overloaded.
@@ -58,6 +61,7 @@ multiple regions. In case of a region-wide failure, traffic can be redirected to
 7. Circuit Breaker Pattern:
 Circuit Breaker: Use a circuit breaker pattern (e.g., Hystrix) to prevent cascading failures. If a downstream service is slow or 
 unresponsive, the circuit breaker will trip, and the system can fall back to alternative logic (e.g., showing default recommendations).
+
 Graceful Degradation: Design the system to degrade gracefully. If the recommendation engine is temporarily unavailable, 
 fallback logic can recommend trending content, most popular items, or cached results until the system is restored.
 
