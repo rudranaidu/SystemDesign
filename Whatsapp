@@ -1,1 +1,78 @@
+Requirements:
+    
+    Functional Requirements:
+    User Management:
+      Users can register with a phone number.
+      Manage user profile, status, and contacts.
+    One-to-One Messaging:
+      Users can send text, media (images, videos, documents), and voice messages to other users.
+      End-to-end encryption for private conversations.
+      Delivery confirmation (Sent, Delivered, Read receipts).
+    Group Messaging:
+      Create groups with multiple users.
+      Admin management (add/remove members, change group info).
+      Broadcast messages to group members.
+    Media Sharing:
+      Support for sending images, videos, audio, and files.
+      Real-time media delivery.
+      Media storage and retrieval (expire after some time).
+    
+    Online Presence & Status:
+      Show when a user is online.
+      Show last seen status.
+      Custom status updates.
+    Push Notifications:
+      Real-time notifications for incoming messages, calls, etc.
+    Voice & Video Calling:
+      One-to-one or group voice and video calling.
+    
+    Message Retention and Syncing:
+      Offline message storage.
+      Sync messages across devices (like WhatsApp Web).
+    
+    Multimedia Storage:
+      Temporary storage of media files.
+      Deletion policies for old media.
+    Security & Encryption:
+      End-to-end encryption for messages.
+    Secure authentication (OTP-based registration).
+    
+Sequence of interactions:
 
+Component Interaction Flow Overview:
+User A opens the chat app and sends a message to User B.
+
+The message is sent to the WebSocket Server, which maintains the persistent connection between the client and server.
+
+The WebSocket Server processes the message and acts as a Kafka Producer to send the message to the Kafka Topic dedicated to messaging.
+
+Kafka holds the message in the queue for reliable and ordered delivery.
+
+The Message Service (Kafka Consumer) reads the message from the Kafka Topic.
+The Message Service checks User B's online status:
+  If User B is online, the message is sent directly to User B via WebSocket.
+  If User B is offline, the message is stored in the Database (e.g., Cassandra) for later delivery.
+  If User B is offline, a Push Notification is sent via a third-party service (e.g., Firebase).
+
+Once User B comes online, the message is retrieved from the database and delivered.
+
+User A       WebSocket Server   Kafka      Message Service   Presence Service  Database   Push Service    User B
+   |                |              |              |                  |           |            |            |
+   | -- (1) Encrypt Message (on client side)        |                  |           |            |            |
+   |                |              |              |                  |           |            |            |
+   | --- (2) Send Encrypted Message via WebSocket ->|                  |           |            |            |
+   |                |              |              |                  |           |            |            |
+   |                | --- (3) Store Encrypted Message in Kafka Topic ->|           |            |            |
+   |                |              |              |                  |           |            |            |
+   |                |              | -- (4) Consume Encrypted Message ->          |            |            |
+   |                |              |              | -- (5) Check User B Online? -->|            |            |
+   |                |              |              | -- Yes -> Deliver via WebSocket|            |            |
+   |                |              |              | --- No -> Store Message in DB  |            |            |
+   |                |              |              |                  | -- (6) Send Push Notification -->|
+   |                |              |              |                  |            | --- Push Notification |
+   |                |              |              |                  |            |            |            |
+   |                |              |              | --- (7) User B Online -> Fetch from DB ---------> |
+   |                |              |              |                  |            |            |            |
+   |                |              |              | --- (8) Decrypt Message (on client side)       |
+   |                |              |              |                  |            | --- Deliver via WebSocket|
+   |                |              |              |                  |            |            |            |
