@@ -1,0 +1,56 @@
+### 1. **Overview and Requirements**
+   - Can you give me a high-level overview of the notification system you want to design? What are the primary use cases?
+   - What types of notifications will this system handle (e.g., email, SMS, push notifications)? Should it support multiple channels?
+   - How do you want the system to behave in terms of latency and reliability? Are you aiming for real-time or near real-time notifications?
+  
+### 2. **API Design**
+   - How would clients (e.g., an eCommerce platform) interact with this system? What kind of API do you envision for the **NotificationProducer** component?
+   - How will you handle different types of notifications in your API request payload? For example, what if a request needs to send both an SMS and an email?
+   - Would you implement a synchronous or asynchronous API for the notification producer? Why?
+   - How would you handle API rate limiting to prevent the system from being overwhelmed by sudden spikes in requests?
+
+### 3. **Message Queue (Kafka)**
+   - Why did you choose **Kafka** as the message =[? What are the advantages of using Kafka in a notification system?
+   - How would you ensure that Kafka can handle a high throughput of notifications during peak times?
+   - How do you ensure **message durability** and prevent loss of messages in case of a Kafka failure or restart?
+   - What is your strategy for **partitioning** Kafka topics? How do you ensure that related messages (e.g., all notifications for a user) are handled efficiently?
+
+### 4. **Notification Handling and Processing**
+   - How does the **NotificationHandler** component consume messages from Kafka? Would you use **consumer groups** or another method?
+   - How do you prioritize certain types of notifications (e.g., time-sensitive SMS notifications vs. less urgent email receipts)?
+   - How would you handle **retry logic** if a third-party service (e.g., an SMS gateway) fails to deliver the message? Would you use a dead-letter queue (DLQ)?
+   - How do you ensure that the notification system remains **stateless** and scalable as the number of notifications grows?
+
+### 5. **Third-Party Message Senders**
+   - How do you plan to integrate with third-party services like Twilio (for SMS) or SendGrid (for email)? How will you manage different integrations for multiple channels?
+   - What happens if a third-party service is down or unreachable? How will your system respond?
+   - How do you deal with **rate limiting** imposed by third-party providers (e.g., if Twilio only allows sending 10 SMS per second)?
+   - Would you implement **fallback mechanisms** in case one provider fails (e.g., switching to another SMS gateway if Twilio is down)?
+
+### 6. **Scalability and Performance**
+   - How would you scale the system to handle millions of notifications per day? What are the key factors to ensure high throughput?
+   - How would you handle **regional scaling** if users are spread across different regions? For example, should notifications be routed through region-specific services to minimize latency?
+   - How do you monitor the **latency** of notifications, ensuring that time-sensitive notifications (e.g., OTPs) are delivered promptly?
+   
+### 7. **Fault Tolerance and Reliability**
+   - How would you ensure **fault tolerance** in the system, particularly in the case of network failures, Kafka downtimes, or third-party service outages?
+   - How would you handle **message deduplication** to prevent sending multiple identical notifications to the same user in case of retries or failures?
+   - In case of catastrophic failure, how would you ensure **graceful degradation** of the system while maintaining essential services?
+
+### 8. **Data Management and Persistence**
+   - Do you plan to store notification history? If so, how would you design the storage layer to store millions of notifications efficiently?
+   - How would you handle **user preferences** for receiving notifications? For example, some users might opt out of certain notification types.
+   - How would you ensure **data consistency** when storing or updating notification statuses (e.g., delivered, failed)?
+
+### 9. **Security and Privacy**
+   - How would you secure the system to prevent unauthorized access to notification services? Would you implement API authentication, encryption, or other security measures?
+   - How do you handle **personally identifiable information (PII)** such as phone numbers or email addresses when sending notifications to ensure compliance with privacy regulations like **GDPR**?
+
+### 10. **Monitoring and Analytics**
+   - How would you monitor the health of the system? What metrics would you track for each component (e.g., Kafka, NotificationProducer, third-party senders)?
+   - How do you ensure that delivery rates, bounce rates, and failures are tracked in real time?
+   - How would you set up alerting for notification failures or significant delays? Would you use tools like **Prometheus** or **Grafana** for this?
+
+### 11. **Extensibility**
+   - How would you design the system to support future notification channels (e.g., in-app notifications or chatbots) without significant changes to the current architecture?
+   - What design considerations would you make to ensure the system is easy to maintain, debug, and update as new features are added?
