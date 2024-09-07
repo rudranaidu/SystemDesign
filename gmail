@@ -21,7 +21,7 @@ Identify the Microservices:
      4) SearchService
      5) Spamdetection Service
      6) VirusScannerService
-     7) ContactMangaementService
+     7) ContactManagementService
      8) PreferencesService
      9) ServiceRegistry
 
@@ -31,7 +31,7 @@ ServiceRegistry:
    the method to service. We also need to implement functionality to check if otherservices or 
    operational or not.
 
-   Components required:
+Components required:
               Distributed gateway : it blocks malicious IPaddresses, routes external requests, Translate HTTP to other protocols
               ServiceManager : It keeps the registry, maps methods to handlers
               DistributedCache : Since mapping does not change freequently we can store the mapping in cache.
