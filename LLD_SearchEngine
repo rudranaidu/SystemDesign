@@ -1,4 +1,4 @@
- Main components: Search Index, Indexer, Web Crawler, and Search Storage.
+Main components: Search Index, Indexer, Web Crawler, and Search Storage.
 
 Low-Level Design of a Search Engine
 1. Web Crawler
