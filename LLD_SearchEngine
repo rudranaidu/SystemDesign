@@ -5,75 +5,75 @@ Low-Level Design of a Search Engine
 Components:
 
 URL Frontier: A queue to manage URLs to be fetched.
-Fetcher: Component to download content from URLs.
-Parser: Component to extract links and content from downloaded web pages.
-Politeness Manager: Ensures compliance with robots.txt and rate limits.
-Duplicate Detector: Identifies and avoids processing duplicate content.
+    Fetcher: Component to download content from URLs.
+    Parser: Component to extract links and content from downloaded web pages.
+    Politeness Manager: Ensures compliance with robots.txt and rate limits.
+    Duplicate Detector: Identifies and avoids processing duplicate content.
 
 Flow:
-Seed URLs Initialization: Load initial seed URLs into the URL Frontier.
+    Seed URLs Initialization: Load initial seed URLs into the URL Frontier.
 Fetch Loop:
-Fetcher retrieves a URL from the URL Frontier.
-Fetcher downloads the web page content.
-Politeness Manager ensures compliance with robots.txt and rate limits.
-Parser extracts links and content from the web page.
-Duplicate Detector checks if the content has been seen before.
-New URLs are added to the URL Frontier.
-Parsed content is sent to the Indexer.
+    Fetcher retrieves a URL from the URL Frontier.
+    Fetcher downloads the web page content.
+    Politeness Manager ensures compliance with robots.txt and rate limits.
+    Parser extracts links and content from the web page.
+    Duplicate Detector checks if the content has been seen before.
+    New URLs are added to the URL Frontier.
+    Parsed content is sent to the Indexer.
 
 2. Indexer
 Components:
-
-Document Processor: Processes raw content to extract text.
-Tokenizer: Breaks down text into individual terms or tokens.
-Normalizer: Converts tokens to a standard form (lowercasing, stemming).
-Inverted Index Builder: Constructs the inverted index.
-Metadata Generator: Generates metadata for documents.
+    Document Processor: Processes raw content to extract text.
+    Tokenizer: Breaks down text into individual terms or tokens.
+    Normalizer: Converts tokens to a standard form (lowercasing, stemming).
+    Inverted Index Builder: Constructs the inverted index.
+    Metadata Generator: Generates metadata for documents.
 
 Flow:
 
-Document Processing: Receive raw content from the Web Crawler.
-Tokenization: Break down the content into tokens.
-Normalization: Standardize tokens.
-Inverted Indexing: Update the inverted index with tokens and their positions.
-Metadata Generation: Store metadata such as term frequency and document frequency.
+    Document Processing: Receive raw content from the Web Crawler.
+    Tokenization: Break down the content into tokens.
+    Normalization: Standardize tokens.
+    Inverted Indexing: Update the inverted index with tokens and their positions.
+    Metadata Generation: Store metadata such as term frequency and document frequency.
 
 3. Search Index
 Components:
 
-Inverted Index: Maps terms to document IDs and term positions.
-Forward Index: Maps document IDs to their content and metadata.
-Ranking Module: Calculates the relevance of documents (e.g., using TF-IDF, PageRank).
+    Inverted Index: Maps terms to document IDs and term positions.
+    Forward Index: Maps document IDs to their content and metadata.
+    Ranking Module: Calculates the relevance of documents (e.g., using TF-IDF, PageRank).
 
 Flow:
 
-Index Creation: Receive tokens and their positions from the Indexer.
-Inverted Index Update: Map terms to document IDs and their positions.
-Forward Index Update: Store document content and metadata.
-Ranking Calculation: Compute relevance scores for documents.
+    Index Creation: Receive tokens and their positions from the Indexer.
+    Inverted Index Update: Map terms to document IDs and their positions.
+    Forward Index Update: Store document content and metadata.
+    Ranking Calculation: Compute relevance scores for documents.
 
 4. Search Storage
 Components:
 
-Document Storage: Stores actual document content or summaries.
-Index Storage: Maintains the inverted and forward indexes.
-Metadata Storage: Keeps metadata for documents, crawling, and indexing.
+    Document Storage: Stores actual document content or summaries.
+    Index Storage: Maintains the inverted and forward indexes.
+    Metadata Storage: Keeps metadata for documents, crawling, and indexing.
 Flow:
 
-Document Storage: Save the content of crawled documents.
-Index Storage: Save the inverted index and forward index data.
-Metadata Storage: Store metadata related to documents, crawling status, and indexing status.
-Interactions and Data Flow
+    Document Storage: Save the content of crawled documents.
+    Index Storage: Save the inverted index and forward index data.
+    Metadata Storage: Store metadata related to documents, crawling status, and indexing status.
+    Interactions and Data Flow
 Web Crawler fetches web pages:
 
-Downloads content and extracts links.
-Stores raw content and sends it to the Indexer.
+    Downloads content and extracts links.
+    Stores raw content and sends it to the Indexer.
+
 Indexer processes content:
 
-Tokenizes and normalizes text.
-Updates the inverted index and generates metadata.
-Sends index data to Search Storage.
-Search Storage stores data:
+    Tokenizes and normalizes text.
+    Updates the inverted index and generates metadata.
+    Sends index data to Search Storage.
+    Search Storage stores data:
 
 Saves document content and metadata.
 Maintains inverted and forward indexes for efficient search.
@@ -85,11 +85,11 @@ Ranking Module: Ranks documents based on relevance scores.
 Results Formatter: Formats the search results for presentation.
 
 Data Structures
-URL Frontier: PriorityQueue or FIFO Queue.
-Inverted Index: HashMap<Term, List<Posting>>, where Posting contains document ID and term positions.
-Forward Index: HashMap<DocumentID, DocumentMetadata>.
-Document Storage: Key-Value Store or NoSQL Database.
-Metadata Storage: Relational Database or NoSQL Database for scalability.
+    URL Frontier: PriorityQueue or FIFO Queue.
+    Inverted Index: HashMap<Term, List<Posting>>, where Posting contains document ID and term positions.
+    Forward Index: HashMap<DocumentID, DocumentMetadata>.
+    Document Storage: Key-Value Store or NoSQL Database.
+    Metadata Storage: Relational Database or NoSQL Database for scalability.
 
 Example Code Snippets
 URL Frontier (PriorityQueue example in Python):
