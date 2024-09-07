@@ -86,3 +86,14 @@ User A       WebSocket Server   Kafka      Message Service   Presence Service  D
    |                |              |              | --- (8) Decrypt Message (on client side)       |
    |                |              |              |                  |            | --- Deliver via WebSocket|
    |                |              |              |                  |            |            |            |
+
+
+
+
+Message Delivery to Different devices:
+
+User Identification & Device Management: Each device is uniquely identified by a Device ID, and the user's account is linked to multiple Device IDs to determine which devices should receive messages.
+Storing Message History: All messages are stored in a central database, linked to user and device IDs, along with delivery statuses (e.g., delivered, read, pending).
+Message Delivery: Messages are sent to all of a user's online devices in real-time via WebSocket. For offline devices, messages are stored and delivered upon reconnection.
+Synchronization Upon Reconnection: When a device reconnects, it requests missed messages, and the server fetches the undelivered ones based on the last synced timestamp.
+Read Receipts & Status Updates: Each device updates the server with read statuses, and other devices sync this information to maintain consistency across devices
