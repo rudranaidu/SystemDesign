@@ -32,3 +32,18 @@ Capacity Estimate:
   
   You would need distributed storage for text and media, optimized with a content delivery network (CDN) for multimedia content.
 
+Interaction Between Components:
+  API Gateway: Receives requests from clients and forwards them to respective services.
+  User A posts a message/image via Post Service → Post stored in Post Service (NoSQL DB).
+  Post triggers an event in the Notification Service, sending notifications to User A’s followers via Kafka.
+  Feed Service pulls the new post and updates the follower’s feeds, using Redis for caching to deliver fast results.
+  User B checks feed, Feed Service retrieves posts from Redis/Elasticsearch.
+  If B comments/likes, Notification Service informs User A in real-time via WebSocket.
+
+Database Selection:
+  User Profiles: SQL DB (e.g., MySQL, PostgreSQL) for structured data and ACID compliance.
+  Posts: NoSQL for scalability and high throughput (e.g., Cassandra or MongoDB).
+  Feed Generation: Redis or Elasticsearch for caching and fast retrieval.
+  Media: Stored in distributed file systems like AWS S3 or Google Cloud Storage.
+  Notifications: Backed by Kafka and Redis for real-time, scalable delivery.
+
