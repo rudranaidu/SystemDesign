@@ -1,0 +1,36 @@
+Message Processing:
+
+How would you handle a scenario where multiple users are sending messages simultaneously to a single user?
+How do you ensure message order is preserved during delivery?
+
+
+Database & Storage:
+
+Why did you choose Cassandra for storing messages? What are its strengths compared to relational databases?
+How would you manage media storage? How do you handle large file uploads?
+
+
+Scalability:
+
+How would you scale Kafka consumers if the message queue becomes overwhelmed?
+What is your strategy for scaling WebSocket servers to handle millions of concurrent connections?
+
+
+Reliability:
+
+How do you handle message delivery in case of system failures or downtime?
+How would you retry failed messages? What backoff strategy would you implement?
+
+Security:
+
+How would you implement end-to-end encryption? How do you ensure secure message delivery?
+How would you manage user authentication and prevent unauthorized access?
+
+
+API Design:
+
+Why did you choose a RESTful API for message sending? Would you consider using gRPC or another protocol?
+How do you handle real-time message delivery with APIs?
+Monitoring:
+
+How would you monitor message delivery performance? What KPIs
