@@ -1,0 +1,34 @@
+Sharding Techniques for RDBMS
+If sharding is necessary, there are different techniques you can rely on depending on how you want to distribute your data.
+
+Range-Based Sharding:
+
+How it works: Data is distributed based on a predefined range. For example, users with IDs from 1-1000 are stored in one shard, 1001-2000 in another.
+Advantages:
+Easy to implement.
+Logical division of data.
+Disadvantages:
+Can lead to unbalanced shards, where one shard gets a disproportionate amount of data (hotspot issue).
+If the data grows unevenly, shards may need to be resharded.
+When to use: When there is a natural way to partition the data by ranges (e.g., date ranges, numeric IDs).
+Hash-Based Sharding:
+
+How it works: Data is distributed by hashing a key (e.g., user ID) and assigning the result to a shard.
+Advantages:
+Distributes data evenly across shards.
+Reduces risk of unbalanced data.
+Disadvantages:
+More complex to implement.
+Difficult to range query (e.g., “find all records between 1-1000”).
+Adding or removing shards requires data to be rehashed and rebalanced.
+When to use: When your workload has random accesses, and you need even distribution of data across all shards (e.g., for large user bases).
+Geographic Sharding (Location-Based Sharding):
+
+How it works: Data is divided based on geographic regions. Each shard stores data relevant to a specific geographic area (e.g., Europe, North America).
+Advantages:
+Easy to define based on user geography.
+Can optimize latency by keeping data close to users.
+Disadvantages:
+Requires load balancing if some regions have more traffic than others.
+Cross-region access can lead to complex consistency and latency issues.
+When to use: For geographically distributed systems, where users access local data (e.g., an e-commerce platform with regional warehouses).
