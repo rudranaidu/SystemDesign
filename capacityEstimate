@@ -13,11 +13,11 @@ Storage capacity for 5 years = Storage per second * 10^5 * 400 * 5* Replication 
 
 Optimal API latency is 200 milli seconds.
 Time taken to read 1 MB sequentially 
-     RAM -> 0.25 milliseconds
-     SSD(Solid state drive) -> 1 ms (4x memory)
-     Disk -> 20 milliseconds (80X memory)
-     1GBPS network -> 10 milliseconds (40 X memory)
-     Distributed Cache like Redis (0.25 milliseconds)
+	RAM: 0.25 ms ✅
+	SSD: 1 ms ✅
+	Disk (HDD): 20 ms ✅
+	1 Gbps Network: 8 ms (revised) ⬅️
+	Distributed Cache (Redis): 0.25 ms ✅
 
 Rounded numbers for Quick calculations
    Hours in a day = 25
@@ -120,18 +120,18 @@ Solution:  DAU = 200 million
 Exercise 6: If a video streaming platform has 50 million users streaming videos at an average bitrate of 2 Mbps for 4 hours per day, 
            How much storage space is needed to store video content for a month?
 
-         Per day = 4* 3600 (seconds) * 2* 10^6/8 (bits per byte)
+         Per day per user = 4* 3600 (seconds) * 2* 10^6/8 (bits per byte)
                 = 4* 36 *10^2*2*10^6/8
                 = 4* 36*10^8 *2/8
                  = 3*10^9
                   ~ 3 GB
 
-         Per Month = 50*10^6 *30* 3*10^9
-                   = 5*3*3*10^17
-                   = 45* 10^17
-                   = 4 * 10 * 10^17
-                   = 4 * 10^18
-                   ~ 4 Exabytes
+         Per Month per 50 million users = 50*10^6 *30* 3*10^9
+			                   = 5*3*3*10^17
+			                   = 45* 10^17
+			                   = 4 * 10 * 10^17
+			                   = 4 * 10^18
+			                   ~ 4 Exabytes
                
 Exercise 7: A file-sharing service has 100 million users uploading files at an average rate of 1 GB per user per week.
             How much storage space is needed to accommodate file uploads for 6 months?
