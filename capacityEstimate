@@ -15,7 +15,7 @@ Optimal API latency is 200 milli seconds.
 Time taken to read 1 MB sequentially 
      RAM -> 0.25 milliseconds
      SSD(Solid state drive) -> 1 ms (4x memory)
-     Disk -> 20 ms (80X memory)
+     Disk -> 20 milliseconds (80X memory)
      1GBPS network -> 10 milliseconds (40 X memory)
      Distributed Cache like Redis (0.25 milliseconds)
 
