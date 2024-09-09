@@ -38,3 +38,42 @@ Database Layer: Use a combination of databases depending on the data requirement
 		Ensure eventual consistency for non-critical operations using asynchronous messaging (for example, if a notification is delayed, the system can still function).
   Caching for High Performance:
 		Use in-memory caching (e.g., Redis, Memcached) to store frequently accessed data (e.g., toll station rates, vehicle types) for fast lookup and to reduce database load.
+
+
+
+
+
+
+In a microservices architecture, the API Gateway typically sits before the load balancer. The flow looks something like this:
+
+Client (Browser, Mobile App, etc.) makes a request.
+The API Gateway receives the client’s request. 
+The API Gateway forwards the request to a Load Balancer, which distributes traffic across multiple instances of a 
+service (based on availability or load).
+The Load Balancer routes the request to the appropriate Microservice instance.
+The Microservice processes the request and returns a response, which flows back through the Load Balancer, 
+API Gateway, and finally, to the Client.
+
+Every microserice has its own load balancer.
+
+How API Gateway do authentication?
+  It intercepts the HTTP header and checks for JWT token if we want to authenticate with JWT.
+  API Gateway must be configured to validate JWT tokens.
+		You need to specify:
+		The JWT provider (authentication service).
+		The public key or secret to validate the JWT signature.
+		Token expiration validation.
+
+The simplest config is maintain .httpasswd file in NGNIX 
+
+How to configure Basic Authentication (Username/Password)
+
+Clients send their credentials (username and password) in the HTTP Authorization header using Base64 encoding.
+The API Gateway verifies the credentials against a user store (e.g., a database or LDAP server).
+
+Configuration:
+Configure the API Gateway to verify credentials by connecting to a user store (e.g., a database or an authentication service).
+Enable TLS/SSL to secure the transmission of credentials.
+
+Example:
+Using Nginx API Gateway: You can enable basic authentication by storing credentials in an .htpasswd file.
