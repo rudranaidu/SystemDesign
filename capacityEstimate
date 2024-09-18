@@ -1,12 +1,7 @@
-
 Fourmulas for capacity estimate
-Throughput (QPS=> Query per second): No.Of Daily activeusers * No of operations daily by each User / 10^5
-                  
-Bandwidth: Find each operation size
-           Find Read : Write ratio 
-
-Read bandwidth =  No of opertions per second * size * read/read+write
-Write bandwidth =  No of opertions per second * size * write/read+write
+	Throughput (QPS=> Query per second): No.Of Daily activeusers * No of operations daily by each User / 10^5
+	Bandwidth: Total Requests per second * RequestSize 
+        Storage: Write requests per second * Request size * ReplicationFactor 
 
 Storage capacity = since we already know the size of operation per second , we can extrapoloate those values to 1 year
 Storage capacity for 5 years = Storage per second * 10^5 * 400 * 5* Replication factor.
