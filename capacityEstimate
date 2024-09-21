@@ -26,8 +26,7 @@ Rounded numbers for Quick calculations
                       = 128 GB of RAM
                       = 32 cores * 8 threds = 250 threads
                       = 50k sockets
-                      = 4 GB per seconds datatransfer
-                      = 300 MB perseconds datatransfer
+                      = 300 MB perseconds datatransfer(average) But 4GB is the maximulm transfer limit.
 
 Power of 2 and power of 10
 2^10  = 10^3 = 1 KB =  1 thousand
