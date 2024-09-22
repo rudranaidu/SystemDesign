@@ -1,4 +1,6 @@
-High-level overview covers many essential use cases for a Notification System, but a few additional considerations could be included to enhance the design. Let's break it down and review the functional and non-functional requirements.
+High-level overview covers many essential use cases for a Notification System,
+but a few additional considerations could be included to enhance the design. 
+Let's break it down and review the functional and non-functional requirements.
 
 Functional Requirements:
   Email Messages: ✅
@@ -15,16 +17,21 @@ Functional Requirements:
   This is critical for compliance with privacy laws (e.g., GDPR, CAN-SPAM), and should include user preference management.
   Retry Mechanism for Offline Users: ✅
   
-  Important for ensuring delivery to users who may not be reachable initially. Consider implementing exponential backoff in retries to avoid overwhelming the system or recipients.
-  No Duplicate Messages: ✅
+  Important for ensuring delivery to users who may not be reachable initially. Consider implementing exponential 
+  backoff in retries to avoid overwhelming the system or recipients.
   
+  No Duplicate Messages: ✅  
   Ensures a clean and user-friendly experience by preventing multiple notifications for the same event.
+
   Message Priority Delivery: ✅
   
-  Useful for separating time-sensitive messages (e.g., OTPs) from lower-priority ones (e.g., promotions). You might want to use different queues or priority-based processing for this.
+  Useful for separating time-sensitive messages (e.g., OTPs) from lower-priority ones (e.g., promotions). 
+  You might want to use different queues or priority-based processing for this.
+
   Rate Limiting Capabilities: ✅
-  
-  Helps prevent overloading users with notifications and ensures compliance with third-party service limitations (e.g., Twilio, SendGrid).
+
+  Helps prevent overloading users with notifications and ensures compliance with third-party service limitations 
+  (e.g., Twilio, SendGrid).
 
 Additional Functional Requirements to Consider:
 Message Scheduling:
