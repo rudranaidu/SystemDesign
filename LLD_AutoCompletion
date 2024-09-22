@@ -1,5 +1,6 @@
 High-Level Design (HLD) for Autocomplete Feature using TRIE
-The high-level design (HLD) outlines the overall architecture, components, and flow of the autocomplete feature using the TRIE data structure. It includes the process for constructing the TRIE initially and handling autocomplete queries.
+The high-level design (HLD) outlines the overall architecture, components, and flow of the autocomplete feature using the
+TRIE data structure. It includes the process for constructing the TRIE initially and handling autocomplete queries.
 
 Components
 
