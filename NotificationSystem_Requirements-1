@@ -57,4 +57,5 @@ Low Latency: ✅
 Ensure that priority notifications like OTPs are delivered within seconds. For non-urgent notifications, slightly higher latencies are acceptable.
 Fault Tolerance: ✅
 
-Ensure the system can handle failures in individual components (e.g., Kafka, third-party providers) without affecting the overall functionality. This could include retries, circuit breakers, and fallback mechanisms.
+Ensure the system can handle failures in individual components (e.g., Kafka, third-party providers) without affecting the overall functionality. 
+This could include retries, circuit breakers, and fallback mechanisms.
