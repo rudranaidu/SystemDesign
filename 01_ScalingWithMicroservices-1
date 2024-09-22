@@ -14,10 +14,10 @@ Database Layer: Use a combination of databases depending on the data requirement
 
   API Gateway & ServiceDiscovery:
         Use Service discovery like Zookeeper or Eureka or Consul to allow microservices to find each other. this is required to avoid
-		the hardcoding of their locations to access.
+       the hardcoding of their locations to access.
 		
-		APIGateway (ZUUL)is to manage the external access to application. It acts as load balancer, authentication purpose
-		request routing
+	APIGateway (ZUUL)is to manage the external access to application. It acts as load balancer, authentication purpose
+	request routing
 		
      AWS S3 or Azure Blob Storage: use these storges for backup and recovery
   
@@ -41,14 +41,10 @@ Database Layer: Use a combination of databases depending on the data requirement
 		Ensure eventual consistency for non-critical operations using asynchronous messaging
                  (for example, if a notification is delayed, the system can still function).
   Caching for High Performance:
-		Use in-memory caching (e.g., Redis, Memcached) to store frequently accessed data (e.g., toll station rates, vehicle types) for fast lookup and to reduce database load.
-
+	Use in-memory caching (e.g., Redis, Memcached) to store frequently accessed data (e.g., toll station rates, vehicle types) 
+        for fast lookup and to reduce database load.
        User circuit breaker patter to avoid failures and graceful shout down of system.
        Circuit breaker pattern provides fallback mechansim to avoid falures. 
-
-
-
-
 
 In a microservices architecture, the API Gateway typically sits before the load balancer. The flow looks something like this:
 
