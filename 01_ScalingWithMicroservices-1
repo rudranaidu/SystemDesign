@@ -3,10 +3,10 @@
 Database Layer: Use a combination of databases depending on the data requirements of each service.
 	RDBMS
 		UserSensitive and timesensitive and high consistency -> use RDBMS like userdata, toll data, payment data etc
-		Scalability:User replication and Sharding for to scaleout the relational DB
+		Scalability:User replication and Sharding to scaleout the relational DB
 	NoSQL Databases:
 		Use Cases: Logging, user preferences, notifications, audit logs, etc.
-	    Scalability: Use NoSQL databases like MongoDB, Cassandra, or DynamoDB for horizontally scalable data storage.
+	        Scalability: Use NoSQL databases like MongoDB, Cassandra, or DynamoDB for horizontally scalable data storage.
 	
     MessageQs : We can use Qs in the scenarios where don’t block the core transaction flow.
 				Use Kafka for handling high-throughput, real-time event processing
@@ -26,19 +26,25 @@ Database Layer: Use a combination of databases depending on the data requirement
 	   Autoscaling for to automatically adjust to traffic demands.
 	   
 	Fault Tolerance and High Availability: 
-		Ensure high availability by deploying services across multiple regions or availability zones. This minimizes downtime and ensures the system can recover quickly from failures.
+		Ensure high availability by deploying services across multiple regions or availability zones. This minimizes downtime 
+                and ensures the system can recover quickly from failures.
 		Use replication for databases and geo-distributed databases for global consistency (e.g., Cassandra or Google Spanner).	
     
 	Monitoring and Alerting:
-	Integrate monitoring tools (e.g., Prometheus, Grafana, AWS CloudWatch, Datadog) to monitor the health of microservices, database performance, and message queues.
+	Integrate monitoring tools (e.g., Prometheus, Grafana, AWS CloudWatch, Datadog) to monitor the health of microservices,
+        database performance, and message queues.
 	Set up alerts for important events like service failures, message queue bottlenecks, or database load spikes.
 	
 	Distributed Transactions and Consistency:
-		Use distributed transactions with techniques like Saga Patterns to handle long-running processes that span multiple microservices (e.g., toll calculation → payment → receipt generation).
-		Ensure eventual consistency for non-critical operations using asynchronous messaging (for example, if a notification is delayed, the system can still function).
+		Use distributed transactions with techniques like Saga Patterns to handle long-running processes 
+                that span multiple microservices (e.g., toll calculation → payment → receipt generation).
+		Ensure eventual consistency for non-critical operations using asynchronous messaging
+                 (for example, if a notification is delayed, the system can still function).
   Caching for High Performance:
 		Use in-memory caching (e.g., Redis, Memcached) to store frequently accessed data (e.g., toll station rates, vehicle types) for fast lookup and to reduce database load.
 
+       User circuit breaker patter to avoid failures and graceful shout down of system.
+       Circuit breaker pattern provides fallback mechansim to avoid falures. 
 
 
 
