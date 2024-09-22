@@ -1,6 +1,8 @@
 Step-by-Step Flow:
 1. Message Creation and Submission (NotificationProducer)
-Client/System Interaction: A client (e.g., an e-commerce platform or backend service) triggers a notification, such as an order confirmation, password reset, or promotional message. This happens when an event occurs, like a successful order or an OTP request.
+Client/System Interaction: A client (e.g., an e-commerce platform or backend service) triggers a notification, 
+such as an order confirmation, password reset, or promotional message. This happens when an event occurs, like a successful order
+or an OTP request.
 API Call: The client system sends an API request to the NotificationProducer. This request contains necessary details such as:
 User details (email, phone, device token for push notifications)
 Message type (Email, SMS, Push)
