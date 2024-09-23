@@ -4,40 +4,52 @@ Concepts:
       Save Userbehaviour in the system and extract some patterns out of it
 
 Recommendation Types:
-       If you are designing a Recommendation engine for Netflix or youtube, Simple way to recommend most popular content(Videos), most liked viewed videos, most liked videos
-       most commented videos.
-       Anoter approach is if a user watches a some video , just recommend him similar videos, If he watches some comic movie, recommend him other comic movies.
+       If you are designing a Recommendation engine for Netflix or youtube, Simple way to recommend most popular content(Videos),
+       most liked viewed videos, most commented videos.
+       Another approach is if a user watches a some video , just recommend him similar videos, 
+       If he watches some comic movie, recommend him other comic movies.
        The above two approaches are simple and it doesn't provide Personalised user experience.
 
        Personalised user experience:
         There are two types of  popular machine learning models exists.
 
-        Content based filtering: Extract all the features of Product . This recommendation is based on Product. For example if we are building a recommendation engine
-        for movies , then we need to save the features like MovieType, ActorsinMovie, ratings of movie.
-        Movie1 has features like 1, 2, 3 and Movie2 has features 2,3,4 then user1 watchd movie1 then we can recomment Movie4 to user1 and Movie1 to user2.
+        Content based filtering: Extract all the features of Product . This recommendation is based on Product. 
+        For example if we are building a recommendation engine for movies , then we need to save the features 
+        like MovieType, ActorsinMovie, ratings of movie.
+        Movie1 has features like 1, 2, 3 and Movie2 has features 2,3,4 then user1 watched movie1 then we can recomment 
+        Movie2 to user1 and Movie1 to user2.
         This approach is good but it also doesn't consider the personalized user experience.
         In simple terms we can say products with common characteristic are suggested.
 
        Collaborative filtering:
           Instead of depending on characteristics of the product, we can suggest the recommendation based on users with similar taste.
-          Lets say user1 wacthes movie1, movie2 and user2 watches movie2 and movie3 then we can suggest movie3 to user1 and movie1 to user2.
+          Lets say user1 wacthes movie1, movie2 and user2 watches movie2 and movie3 then we can suggest movie3 to user1 
+          and movie1 to user2.
          Create a matrix with movies and users watching history.
-          If the userbase is huge then building this matrix is difficult. it has performance cost. One way to counter this problem is group similar users together.
-          It fails at making accurate recommendations during the beginning of the application when the user base is small. This is called the cold start problem. 
+          If the userbase is huge then building this matrix is difficult. it has performance cost. 
+          One way to counter this problem is group similar users together.
+          It fails at making accurate recommendations during the beginning of the application when the user base is small.
+          This is called the cold start problem. 
           If the application has just started, you’ll have either no or very few actions from the users to work on. 
-          The small amount of information from the few users who are using the application is not enough to make reliable recommendations to the users.
-          One way to solve this problem is to start your recommendation system on content-based filtering. Once you have more users and the amount of information 
-          regarding their actions and preferences is enough to feed to your collaborative filtering model, you can switch to this filtering approach
+          The small amount of information from the few users who are using the application is not enough to make reliable 
+          recommendations to the users.
+          One way to solve this problem is to start your recommendation system on content-based filtering. 
+          Once you have more users and the amount of information 
+          regarding their actions and preferences is enough to feed to your collaborative filtering model, 
+          you can switch to this filtering approach
 
  Feedback:  Recommendation systems thrive on feedback. They are two types of feedback. 1) ExplicitFeedback 2) ImplicitFeedback
             Explicit feedback is through giving rating, likes, shares, commenting, most of the users don't do all these things.
-            Implicit feedback is the ratings that are derived by the system through other actions of the user, including purchases, searches, time spent on the content, clicks, etc.
-            If a user purchases a certain content, for example, it implies a high rating. The system gives the item a high rating for that user in the utility matrix.
+            Implicit feedback is the ratings that are derived by the system through other actions of the user, including purchases, 
+            searches, time spent on the content, clicks, etc.
+            If a user purchases a certain content, for example, it implies a high rating. 
+            The system gives the item a high rating for that user in the utility matrix.
 
             Once the system fills the utility with the “known” ratings, there are still empty spaces left. 
-            The next challenge is to extrapolate the unknown ratings from the known ratings that our system has already filled into the matrix. 
-            The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering or a hybrid approach that uses a combination of the two 
-            techniques.
+            The next challenge is to extrapolate the unknown ratings from the known ratings that our system has already 
+            filled into the matrix. 
+            The extrapolation of unknown ratings can be done using content-based filtering, collaborative filtering 
+            or a hybrid approach that uses a combination of the two techniques.
             Following are main components in Recommendation system
 
                ProfileBuilder -> Use Explicit Feedback and ImplicitFeedback and build the userprofile and save it in DB
@@ -47,11 +59,15 @@ Recommendation Types:
             You can use a distributed NoSQL datastore such as Cassandra, or MongoDb to store this data. 
             Often, this data is normalized using techniques like mean centering to make it easier to compare data between users.
 
-           Users give feedback explicitly and implicitly. Both the types of feedback are consumed by the Profile Builder to create a customized database for each user.
-           This database holds the individual interests of the users in the form of explicit ratings they have given to movies or what they have liked implicitly by purchasing 
-           or watching. You can use a distributed NoSQL datastore such as Cassandra, or MongoDb to store this data. Often, this data is normalized using techniques 
-           like mean centering to make it easier to compare data between users.
-           Next, the Candidate Generation service compares the Individual Interests database with the Similar Items database to pick product 
-          candidates that could be of interest to the user. The Similar Items database in the diagram above can be the database of items used by similar users 
-          (in the case of collaborative filtering) or a database of items with similar features (in the case of content-based filtering)
+           Users give feedback explicitly and implicitly. Both the types of feedback are consumed by the Profile Builder 
+           to create a customized database for each user.
+           This database holds the individual interests of the users in the form of explicit ratings they have given to movies 
+           or what they have liked implicitly by purchasing 
+           or watching. You can use a distributed NoSQL datastore such as Cassandra, or MongoDb to store this data. 
+           Often, this data is normalized using techniques like mean centering to make it easier to compare data between users.
+           Next, the Candidate Generation service compares the Individual Interests database with the Similar Items database 
+           to pick product candidates that could be of interest to the user. The Similar Items database in the diagram above 
+           can be the database of items used by similar users 
+          (in the case of collaborative filtering) or a database of items with similar features
+          (in the case of content-based filtering)
   
