@@ -65,7 +65,8 @@ Identify the microservices:
 - `getLatestDocumentVersion`: Retrieves the latest version of a document from the database.
 
  1. Snapshot-Based Versioning:
-	- Google Docs employs a snapshot-based approach to versioning. Each time a user makes changes to a document, Google Docs captures the document's current state as a snapshot.
+	- Google Docs employs a snapshot-based approach to versioning. Each time a user makes changes to a document, 
+          Google Docs captures the document's current state as a snapshot.
  2. Version Identifier:
 	- Each snapshot is assigned a unique version identifier. This identifier could be a timestamp or a sequentially increasing number, representing the order of changes.
  3. Metadata Storage:
