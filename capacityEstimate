@@ -196,7 +196,8 @@ Per Week for 10 Million Devices Calculation:
 Howmany number of servers are required?
 
 Exercise 11: A social media platform has 300 million daily active users, with each user making an average of 50 API calls per day. 
-             If each API call takes 50 milliseconds to process and each server can handle 500 requests per second, how many application servers are required to handle the user traffic efficiently?
+             If each API call takes 50 milliseconds to process and each server can handle 500 requests per second, 
+how many application servers are required to handle the user traffic efficiently?
 Solution: Requests per Second Calculation:
 
 Each API call takes 50 milliseconds to process, so the platform can handle 
