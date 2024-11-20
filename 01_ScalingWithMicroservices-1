@@ -34,6 +34,7 @@ Database Layer: Use a combination of databases depending on the data requirement
 	Integrate monitoring tools (e.g., Prometheus, Grafana, AWS CloudWatch, Datadog) to monitor the health of microservices,
         database performance, and message queues.
 	Set up alerts for important events like service failures, message queue bottlenecks, or database load spikes.
+        Prometheus collects rich metrics and provides a powerful querying language; Grafana transforms metrics into meaningful visualizations
 	
 	Distributed Transactions and Consistency:
 		Use distributed transactions with techniques like Saga Patterns to handle long-running processes 
