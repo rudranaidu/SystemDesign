@@ -36,8 +36,7 @@
    to find the shops and relevant information with in walkable distance. 
    Based on Latitude and Longitude it finds the nearest locations.
 
-4) Adding a new locations to Graph: Again add Longitude and Latitude and use
-     Graph DBs to add locations
+4) Adding a new locations to Graph: Use Longitude and Latitude and use Graph DBs to add locations
  
 5) LocationTracking: Push locations updates for every 3 or 5 minutes to the servers
       What if the connection lost while driving. Then during that time use approximation and update Location.
