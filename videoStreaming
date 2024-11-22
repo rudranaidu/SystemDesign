@@ -135,13 +135,13 @@ Total datatransfer = sum of ( 50%HD Devices + 50% mobile devices) * 50/100
 3) Howmuch time would it take to send data from event to users device?
 
    For watching cricket match 10 hrs 10 GB data
-   ie 3600 seconds -> 10 GB
-   1 second -> 3 KB
-   
-   in 1 second 3KB of data is transferred from CDN to end user device
-   Total time =  video uploadTime + Geographial server to CDN + CDN to endDevice
-   Assume that 3KB data will be tranferred from Geographical servers to CDN in 150 milli seconds
-   and also assume that it takes 150 milli seconds to transfer 3KB data to upload service.
-   Total latency = 1 second + 0.3 + 0.3
-                = 1.3 seconds
-				
+   Data Rate:
+
+   10GB=10×1024MB=10240MB.
+   10 hours = 36000 seconds.
+   10240MB ≈0.284MB/s=284KB/s.
+
+Latency Components:
+Video upload latency: 150ms for 3 KB data.
+Geographical server to CDN: 150ms for 3 KB data.
+CDN to end user's device: 1second for 3 KB data.
