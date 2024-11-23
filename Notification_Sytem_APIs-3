@@ -55,7 +55,8 @@ Trade-offs:
 
 Delays: The API call would be slower as it waits for a third-party service response.
 Limited Scalability: Handling synchronous notifications at scale becomes more challenging due to delays caused by third-party services.
-Response: The system waits for confirmation from the notification service and returns a 200 OK if successful, or a relevant error message (e.g., 503 Service Unavailable) 
+Response: The system waits for confirmation from the notification service and returns a 200 OK if successful, or a relevant error message 
+(e.g., 503 Service Unavailable) 
 if there’s a failure.
 
 The Notification System consists of several key APIs that enable interaction with the system:
