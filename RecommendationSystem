@@ -16,7 +16,7 @@ Recommendation Types:
         Content based filtering: Extract all the features of Product . This recommendation is based on Product. 
         For example if we are building a recommendation engine for movies , then we need to save the features 
         like MovieType, ActorsinMovie, ratings of movie.
-        Movie1 has features like 1, 2, 3 and Movie2 has features 2,3,4 then user1 watched movie1 then we can recomment 
+        Movie1 has features like 1, 2, 3 and Movie2 has features 2,3,4 then user1 watched movie1 then we can recommend
         Movie2 to user1 and Movie1 to user2.
         This approach is good but it also doesn't consider the personalized user experience.
         In simple terms we can say products with common characteristic are suggested.
