@@ -236,24 +236,32 @@ public class Main {
 
 How the TRIE Structure Helps in Reducing Memory Usage Compared to Other Data Structures
 Shared Prefixes:
-  In a TRIE, common prefixes are stored only once. This reduces the redundancy that would be present in other data structures like arrays or linked lists where each word would be stored independently.
-  For example, the words "cat", "car", and "cart" share the prefix "ca". In a TRIE, "ca" is stored once, and then it branches out to "t", "r", and "rt".
+In a TRIE, common prefixes are stored only once. This reduces the redundancy that would be present in other data structures like arrays
+or linked lists where each word would be stored independently.
+For example, the words "cat", "car", and "cart" share the prefix "ca". In a TRIE, "ca" is stored once, and then it branches out 
+to "t", "r", and "rt".
 
 Potential Memory-Related Issues with TRIE Implementation
 High Overhead for Small Data Sets:
-  For small datasets, the overhead of maintaining the TRIE nodes and their pointers can be higher compared to simpler structures like arrays or linked lists. The memory savings from shared prefixes may not be significant enough to offset this overhead.
-  In such cases, the TRIE might end up using more memory than a simpler data structure due to the storage of additional metadata (e.g., pointers or map entries).
+  For small datasets, the overhead of maintaining the TRIE nodes and their pointers can be higher compared to simpler structures like arrays or
+  linked lists. The memory savings from shared prefixes may not be significant enough to offset this overhead.
+  In such cases, the TRIE might end up using more memory than a simpler data structure due to the storage of 
+  additional metadata (e.g., pointers or map entries).
 
 How would you handle a scenario where the number of words is too large to fit into a single machine’s memory?
 
-Handling a scenario where the number of words is too large to fit into a single machine’s memory requires a distributed approach. This involves breaking down the TRIE data structure and distributing it across multiple machines or nodes. Here's how you can approach this problem:
+Handling a scenario where the number of words is too large to fit into a single machine’s memory requires a distributed approach. 
+This involves breaking down the TRIE data structure and distributing it across multiple machines or nodes.
+Here's how you can approach this problem:
 
 Distributed Approach to Handle TRIE Data Structure
 Sharding:
 Divide the TRIE into multiple smaller TRIEs, each responsible for a subset of the data. This process is known as sharding.
-Each shard can be responsible for a specific range of prefixes. For example, one shard might handle prefixes starting with 'a-m', and another might handle 'n-z'.
+Each shard can be responsible for a specific range of prefixes. For example, one shard might handle prefixes starting with 'a-m', 
+and another might handle 'n-z'.
 
 Distributed Storage:
-Use a distributed storage system to store the shards. Distributed databases like Apache Cassandra, HBase, or a distributed in-memory data grid like Redis or Hazelcast can be used.
+Use a distributed storage system to store the shards. Distributed databases like Apache Cassandra, HBase, or a distributed in-memory 
+data grid like Redis or Hazelcast can be used.
 Each shard (partial TRIE) is stored in a separate node in the distributed system
 
