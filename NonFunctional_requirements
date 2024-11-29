@@ -1,0 +1,21 @@
+Explain Fault tolerance and Highavailability
+
+we can achieve fault-tolerance and HA  across the system using multinode deployments. Multinode deployments also ensures scalability
+we can achieve HA in Database using Replication.
+
+Replication:
+
+Focuses on datasets by replicating data across multiple database instances.
+Ensures high availability by providing redundancy; if one database node fails, another replica can take over.
+Improves read performance by distributing read requests to read replicas, reducing load on the primary node.
+
+
+Multi-Node Architecture:
+
+Focuses on the system level, deploying multiple instances of application services to ensure system availability and scalability.
+Often relies on stateless architecture for easy scaling, where requests can be routed to any node without requiring session persistence.
+
+Distinction:
+
+Replication is specific to databases or other stateful components, ensuring data availability and durability.
+Multi-node architecture applies to the entire system, enabling fault tolerance and load balancing across nodes.
