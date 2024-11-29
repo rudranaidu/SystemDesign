@@ -1,36 +1,49 @@
+Databases
+Relational DB: Store user profiles and job postings.
+NoSQL DB: Use a document store (e.g., MongoDB) for user preferences and job recommendations.
+Search Engine: Use Elasticsearch for full-text search and filtering.
+
+Relational DB (PostgreSQL/MySQL): Store the core, consistent, structured data like user profiles and job postings.
+NoSQL (MongoDB/DynamoDB): Use for caching or serving precomputed recommendations and denormalized job posting data for fast reads.
 
 Recommendation Models
 The Recommendation Engine uses a combination of Collaborative Filtering, Content-Based Filtering, and optionally, Hybrid Models.
 
 Content-Based Filtering
-Matches users with jobs based on similarity between user features and job features.
-Uses cosine similarity or other distance metrics to compare vectors.
-Example:
-User skills: ["Python", "Machine Learning", "Data Analysis"].
-Job skills: ["Python", "Deep Learning", "Data Science"].
-Similarity score is computed based on vector overlap.
-
+  Matches users with jobs based on similarity between user features and job features.
+  Uses cosine similarity or other distance metrics to compare vectors.
+  Example:
+  User skills: ["Python", "Machine Learning", "Data Analysis"].
+  Job skills: ["Python", "Deep Learning", "Data Science"].
+  Similarity score is computed based on vector overlap.
 
 Collaborative Filtering
-Leverages patterns of user behavior to recommend jobs.
-Two main approaches:
-User-based Filtering: Finds similar users (based on interaction matrix) and recommends jobs they interacted with.
-Item-based Filtering: Finds similar jobs (based on interactions) and recommends those to the user.
-
-Example:
-User A and User B both applied for jobs X and Y. If User A applies for job Z, recommend Z to User B.
+  Leverages patterns of user behavior to recommend jobs.
+  Two main approaches:
+  User-based Filtering: Finds similar users (based on interaction matrix) and recommends jobs they interacted with.
+  Item-based Filtering: Finds similar jobs (based on interactions) and recommends those to the user.
+  
+  Example:
+  User A and User B both applied for jobs X and Y. If User A applies for job Z, recommend Z to User B.
 
 Matrix Factorization
-Uses techniques like Singular Value Decomposition (SVD) or Alternating Least Squares (ALS) to decompose the user-job interaction matrix into latent features.
-Captures hidden patterns (e.g., jobs liked by "data science" professionals) and recommends accordingly.
+  Uses techniques like Singular Value Decomposition (SVD) or Alternating Least Squares (ALS) to decompose the user-job interaction matrix into latent features.
+  Captures hidden patterns (e.g., jobs liked by "data science" professionals) and recommends accordingly.
+  
+  Deep Learning Models
+  Use Neural Collaborative Filtering (NCF) or Autoencoders for more personalized and complex recommendations.
+  Embedding layers represent users and jobs in a dense vector space for better matching.
 
-Deep Learning Models
-Use Neural Collaborative Filtering (NCF) or Autoencoders for more personalized and complex recommendations.
-Embedding layers represent users and jobs in a dense vector space for better matching.
+Ranking and Filtering
 
+  Once potential jobs are identified, the system ranks them based on relevance and user preferences:
+  
+  Relevance Scoring:
+  Combines the similarity scores from Content-Based and Collaborative Filtering.
+  Business Logic:
+  Incorporate rules (e.g., prioritize recent postings or local jobs).
 
-
-4. Retrieving Top k Jobs
+Retrieving Top k Jobs
 
 Implementation:
 Maintain a priority queue or max heap of size k. For each job, calculate the similarity and insert it into the queue.
@@ -39,4 +52,11 @@ If the queue exceeds k, remove the job with the lowest similarity score.
 Optimization:
 Use precomputed similarity scores from batch processing.
 Leverage MapReduce for parallel computation if dataset is large.
+
+Batch Processing
+  The engine periodically runs batch jobs to precompute recommendations:
+  
+  Extract relevant features and update user-job matrices.
+  Train or update recommendation models using new interaction data.
+  Store the results in a NoSQL database for fast retrieval.
 
