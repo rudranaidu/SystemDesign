@@ -29,7 +29,7 @@ Capacity Estimation
 
 Data Model
 Entities & Attributes:
-Define the key entities and their attributes in the system.
+    Define the key entities and their attributes in the system.
 
 Relationships:
 Specify how these entities are related and map out their relationships (e.g., 1-to-1, 1-to-many).
@@ -38,9 +38,10 @@ Database Design:
 
 Choose the type of database (SQL/NoSQL) for each part of the system.
 Justify the choice based on requirements like transaction consistency, scalability, and query patterns.
+
 API Design
 Core API Endpoints:
-List the API endpoints needed for the system to implement the functional requirements. Include:
+  List the API endpoints needed for the system to implement the functional requirements. Include:
 
 Endpoint Name
 Request/Response Format
@@ -53,37 +54,41 @@ Architecture Overview:
 
 Draw a high-level architecture diagram showing the main components (e.g., clients, services, databases, caches, external integrations).
 Label all interactions and flows between the components.
+
 Detailed Design for Functional Requirements:
 For each functional requirement, provide:
 
-A step-by-step flow of how the system fulfills the requirement.
-Details on the components and their roles (e.g., service for recommendation engine, database queries, caching).
-An architecture diagram for that specific feature, if needed.
-Data Processing Pipelines:
-Define any pipelines needed for background processing (e.g., recommendation generation, analytics computation).
+  A step-by-step flow of how the system fulfills the requirement.
+  Details on the components and their roles (e.g., service for recommendation engine, database queries, caching).
+  An architecture diagram for that specific feature, if needed.
+  Data Processing Pipelines:
+  Define any pipelines needed for background processing (e.g., recommendation generation, analytics computation).
 
 Caching Strategy:
-
 Define where caching is used (e.g., CDN, database cache, in-memory cache).
 Justify the cache design and replacement policy (e.g., LRU, TTL).
+
 Load Balancing:
-Describe the load balancing strategy, including algorithms (e.g., round-robin, weighted distribution).
+  Describe the load balancing strategy, including algorithms (e.g., round-robin, weighted distribution).
 
 Failure Recovery:
+  Explain how the system handles failures (e.g., retries, failovers).
 
-Explain how the system handles failures (e.g., retries, failovers).
 Highlight monitoring and alerting mechanisms.
+
 Design Discussion
 Trade-offs and Justifications:
 
 Explain the design decisions, including why specific databases, caching strategies, or replication mechanisms were chosen.
 Discuss how the system balances trade-offs like consistency vs. availability.
+
 Potential Bottlenecks:
 Identify bottlenecks in the system and provide possible solutions (e.g., sharding, read replicas).
 
 Extension Questions
 Suggest two additional features that would require extending the architecture, API design, and data model.
 Describe how the system design would need to evolve to support these new features.
+
 Deep-Dive Questions
 How does the system handle scalability and ensure high availability?
 How does the data model and database choice affect the system's performance?
