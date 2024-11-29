@@ -59,4 +59,3 @@ Batch Processing
   Extract relevant features and update user-job matrices.
   Train or update recommendation models using new interaction data.
   Store the results in a NoSQL database for fast retrieval.
-
