@@ -1,0 +1,91 @@
+Requirements Engineering
+
+Initial Analysis:
+Analyze the system with the following three core questions:
+  Is the system read-heavy or write-heavy?
+  Will the system be deployed as a distributed system or a single server?
+  What is more critical for the system: consistency or availability (CAP theorem trade-offs)?
+
+Functional Requirements:
+  Identify the core functional requirements of the system.
+  Define a set of supporting features that enhance user experience or operational efficiency.
+
+Non-Functional Requirements:
+  Specify three key non-functional requirements (e.g., scalability, low latency, fault tolerance) that ensure a good user experience.
+  
+Scale of the System:
+    Ask clarifying questions to capture the system's expected scale, such as:
+  Number of users or transactions per second.
+  Geographical distribution of users.
+  Expected growth rate in the next 5 years.
+  
+Capacity Estimation
+  Throughput:
+      Estimate the number of requests per second the system should handle.
+  Bandwidth:
+      Calculate the bandwidth requirements based on request sizes and throughput.
+  Storage:
+      Estimate the total storage requirements for the system over a time horizon (e.g., 5 years), including growth projections.
+
+Data Model
+Entities & Attributes:
+Define the key entities and their attributes in the system.
+
+Relationships:
+Specify how these entities are related and map out their relationships (e.g., 1-to-1, 1-to-many).
+
+Database Design:
+
+Choose the type of database (SQL/NoSQL) for each part of the system.
+Justify the choice based on requirements like transaction consistency, scalability, and query patterns.
+API Design
+Core API Endpoints:
+List the API endpoints needed for the system to implement the functional requirements. Include:
+
+Endpoint Name
+Request/Response Format
+Purpose
+Support APIs:
+Add any additional APIs required for internal operations, admin tasks, or analytics.
+
+System Design
+Architecture Overview:
+
+Draw a high-level architecture diagram showing the main components (e.g., clients, services, databases, caches, external integrations).
+Label all interactions and flows between the components.
+Detailed Design for Functional Requirements:
+For each functional requirement, provide:
+
+A step-by-step flow of how the system fulfills the requirement.
+Details on the components and their roles (e.g., service for recommendation engine, database queries, caching).
+An architecture diagram for that specific feature, if needed.
+Data Processing Pipelines:
+Define any pipelines needed for background processing (e.g., recommendation generation, analytics computation).
+
+Caching Strategy:
+
+Define where caching is used (e.g., CDN, database cache, in-memory cache).
+Justify the cache design and replacement policy (e.g., LRU, TTL).
+Load Balancing:
+Describe the load balancing strategy, including algorithms (e.g., round-robin, weighted distribution).
+
+Failure Recovery:
+
+Explain how the system handles failures (e.g., retries, failovers).
+Highlight monitoring and alerting mechanisms.
+Design Discussion
+Trade-offs and Justifications:
+
+Explain the design decisions, including why specific databases, caching strategies, or replication mechanisms were chosen.
+Discuss how the system balances trade-offs like consistency vs. availability.
+Potential Bottlenecks:
+Identify bottlenecks in the system and provide possible solutions (e.g., sharding, read replicas).
+
+Extension Questions
+Suggest two additional features that would require extending the architecture, API design, and data model.
+Describe how the system design would need to evolve to support these new features.
+Deep-Dive Questions
+How does the system handle scalability and ensure high availability?
+How does the data model and database choice affect the system's performance?
+What optimizations can be applied to reduce latency?
+Explain how the system supports disaster recovery.
