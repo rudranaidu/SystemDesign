@@ -19,3 +19,14 @@ Distinction:
 
 Replication is specific to databases or other stateful components, ensuring data availability and durability.
 Multi-node architecture applies to the entire system, enabling fault tolerance and load balancing across nodes.
+
+How Replication Ensures High Availability ?
+
+Failover Support:
+  If the primary node fails, a replica can take over as the new primary.
+  This ensures the system remains operational without noticeable downtime.
+Distributing Read Load:
+  By directing read requests to replicas, replication reduces the load on the primary node.
+  Prevents bottlenecks and ensures smoother performance.
+Data Durability:
+  Data changes are propagated to replicas, ensuring no data is lost even if one node fails.
