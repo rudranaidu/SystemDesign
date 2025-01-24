@@ -42,7 +42,8 @@ Multi-Language Support:
 If the system serves users in different regions, consider adding the ability to send notifications in different languages.
 Audit and Reporting:
 
-Track delivery success, failures, and user interactions with notifications (e.g., email opens, SMS clicks). This is useful for analytics and debugging.
+Track delivery success, failures, and user interactions with notifications (e.g., email opens, SMS clicks). 
+This is useful for analytics and debugging.
 
 
 Non-Functional Requirements:
